@@ -44,5 +44,5 @@ I need to be able to check the current news stories.
 
 
 ### Wireframe
-<img src="https://github.com/lukewickens1989/traveller-app/blob/main/New%20Wireframe%201.png" alt="Wireframe" width="50%">
+<img src="https://github.com/xavierloos/RideTheDuck/blob/main/New%20Wireframe%201.png" alt="Wireframe" width="50%">
 
