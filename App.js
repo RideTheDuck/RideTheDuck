@@ -7,22 +7,31 @@ import {
   TouchableOpacity,
   TextInput,
   StyleSheet,
-  SafeAreaView,
+  // SafeAreaView,
   TouchableWithoutFeedback,
   TouchableHighlight,
   Button,
   Alert,
   Image,
 } from 'react-native';
+import { Header } from 'react-native-elements';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import SearchBox from './components/searchbox'
+import Geolocation from './components/geolocation'
 import axios from 'axios';
 
 export default function App(){
   
   return (
-    <SafeAreaView style={styles.container}>
+    <>
+    <Header
+      leftComponent={{ icon: 'menu', color: '#fff' }}
+      centerComponent={{ text: 'Ride the Duck 🦆', style: { color: '#fff' } }}
+      rightComponent={{ icon: 'home', color: '#fff' }}
+    />
       <SearchBox />
-    </SafeAreaView>
+      <Geolocation/>
+    </>
   )   
 }
 

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import {View,Text,TextInput,StyleSheet,SafeAreaView, FlatList, TouchableOpacity} from 'react-native';
+import {View, Text, TextInput, StyleSheet, SafeAreaView, FlatList, TouchableOpacity} from 'react-native';
 import axios from 'axios';
-const API_KEY = 'AIzaSyDdBDuL5xNv_T1RD2gdg98jl27ndw6rB1Q';
+
 
 export default class SearchBox extends Component {
   constructor(props) {
@@ -14,21 +14,21 @@ export default class SearchBox extends Component {
   }
   searchLocation = async (text) => {
     this.setState({searchKeyword: text});
-    axios
-      .request({
-        method: 'post',
-        url: `https://maps.googleapis.com/maps/api/place/autocomplete/json?key=${API_KEY}&input=${this.state.searchKeyword}`,
-      })
-      .then((response) => {
-        console.log(response.data);
-        this.setState({
-          searchResults: response.data.predictions,
-          isShowingResults: true,
-        });
-      })
-      .catch((e) => {
-        console.log(e.response);
-      });
+    // axios
+    //   .request({
+    //     method: 'post',
+    //     url: `https://maps.googleapis.com/maps/api/place/autocomplete/json?key=${API_KEY}&input=${this.state.searchKeyword}`,
+    //   })
+    //   .then((response) => {
+    //     console.log(response.data);
+    //     this.setState({
+    //       searchResults: response.data.predictions,
+    //       isShowingResults: true,
+    //     });
+    //   })
+    //   .catch((e) => {
+    //     console.log(e.response);
+    //   });
   };
     render() {
       return (
@@ -36,7 +36,7 @@ export default class SearchBox extends Component {
       <SafeAreaView style={styles.container}>
         <View style={styles.autocompleteContainer}>
           <TextInput
-            placeholder="Search for an address"
+            placeholder="Search for destination"
             returnKeyType="search"
             style={styles.searchBox}
             placeholderTextColor="#000"
@@ -81,12 +81,12 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 50,
   },
-  dummmy: {
-    width: 600,
-    height: 200,
-    backgroundColor: 'hotpink',
-    marginTop: 20,
-  },
+  // dummmy: {
+  //   width: 600,
+  //   height: 200,
+  //   backgroundColor: 'hotpink',
+  //   marginTop: 20,
+  // },
   resultItem: {
     width: '100%',
     justifyContent: 'center',
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: 'lightblue',
+    // backgroundColor: 'lightblue',
     alignItems: 'center',
   },
 });
