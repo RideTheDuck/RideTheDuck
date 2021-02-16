@@ -27,6 +27,8 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "An all-in-one traveller app that provides useful information for the destination.",
+    "githubUrl": "https://github.com/RideTheDuck/RideTheDuck"
   }
 }
