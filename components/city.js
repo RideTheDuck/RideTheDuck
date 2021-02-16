@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Button, Text, Image } from 'react-native';
 import axios from 'axios';
-// import SvgUri from 'react-native-svg-uri';
+import { SvgUri } from 'react-native-svg';
 import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
 
 import t from 'tcomb-form-native'; // 0.6.9
-
+var lat
+var lng
+var flag
 const Form = t.form.Form;
 
 const City = t.struct({
@@ -54,18 +56,23 @@ export default class App extends Component {
     var countryname
     var capital
     var currency
-    var flag
+    
     var timezone
     var laguage
+    
     this.setState({searchKeyword: cityName})
     axios.get(`https://restcountries.eu/rest/v2/capital/${cityName}`)
     .then(res=> {
       console.log('name')
       console.log(res.data[0].name)
+      lat=res.data[0].latlng[0]
+      lng = res.data[0].latlng[1]
+      console.log('LATITUDE')
+      console.log(lat, lng)
       console.log('timezones')
       console.log(res.data[0].timezones[0])
       console.log("flag")
-      console.log(res.data[0].flag)
+      flag=res.data[0].flag
       console.log("currency")
       console.log(res.data[0].currencies[0].code)
 
@@ -96,7 +103,7 @@ export default class App extends Component {
     }
     return (
       <View style={styles.container}>
-            <MapView style={styles.map} />
+        
 
         <Form 
           ref={c => this._form = c}
@@ -112,15 +119,19 @@ export default class App extends Component {
         <Text>{currency}</Text>
         <Text>{language}</Text>
         <MapView
-        provider={PROVIDER_GOOGLE} 
-        style={{flex:1}}
-
+          style={styles.map}
+          provider={PROVIDER_GOOGLE} 
           initialRegion={{
-            latitude: 37.78825,
-            longitude: -122.4324,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
+           latitude: `${lat}`,
+            longitude: `${lng}`,
+            //  latitudeDelta: 0.04,
+            //  longitudeDelta: 0.05,
           }}
+        />
+        <SvgUri
+          width="50%"
+          height="50%"
+          uri={`${flag}`}
         />
       </View>
     );
