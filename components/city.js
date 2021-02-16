@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Button, Text, Image } from 'react-native';
+import { View, StyleSheet, Button, Text, Image, Keyboard, TouchableWithoutFeedback, TextInput} from 'react-native';
 import axios from 'axios';
 // import SvgUri from 'react-native-svg-uri';
 import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
-
 import t from 'tcomb-form-native'; // 0.6.9
 
 const Form = t.form.Form;
@@ -111,6 +110,7 @@ export default class App extends Component {
         <Text>{timezone}</Text>
         <Text>{currency}</Text>
         <Text>{language}</Text>
+        {Keyboard.dismiss()}
         <MapView
         provider={PROVIDER_GOOGLE} 
         style={{flex:1}}
@@ -130,7 +130,7 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
-    marginTop: 50,
+    // marginTop: 50,
     padding: 20,
     backgroundColor: '#ffffff',
   },
