@@ -31,7 +31,7 @@ export default function App(){
       rightComponent={{ icon: 'home', color: '#fff' }}
     />
       <SearchBox />
-      <Geolocation/> 
+      {/* <Geolocation/>  */}
       <Fx/>
       </SafeAreaProvider>
 
