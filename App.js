@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
   TextInput,
   StyleSheet,
-  // SafeAreaView,
   TouchableWithoutFeedback,
   TouchableHighlight,
   Button,
