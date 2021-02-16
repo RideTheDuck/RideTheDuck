@@ -34,7 +34,6 @@ export default function App(){
       <SearchBox />
       <Geolocation/> 
       <Fx/>
-      {/* <CurrencyConverter/> */}
       </SafeAreaProvider>
 
   )   
