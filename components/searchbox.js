@@ -7,7 +7,7 @@ export default class SearchBox extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchKeyword: '',
+      searchKeyword: 'Mexico',
       searchResults: [],
       isShowingResults: false,
     };
