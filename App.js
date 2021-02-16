@@ -23,7 +23,7 @@ import axios from 'axios';
 export default function App(){
   
   return (
-    <>
+    <SafeAreaProvider>
     <Header
       leftComponent={{ icon: 'menu', color: '#fff' }}
       centerComponent={{ text: 'Ride the Duck 🦆', style: { color: '#fff' } }}
@@ -31,7 +31,7 @@ export default function App(){
     />
       <SearchBox />
       <Geolocation/>
-    </>
+      </SafeAreaProvider>
   )   
 }
 
