@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Button, Text, FlatList } from 'react-native';
+import { View, StyleSheet, Button, Text, Image } from 'react-native';
 import axios from 'axios';
+// import SvgUri from 'react-native-svg-uri';
+import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
 
 import t from 'tcomb-form-native'; // 0.6.9
 
@@ -37,20 +39,6 @@ const formStyles = {
   }
 }
 
-// const options = {
-//   fields: {
-//     email: {
-//       error: 'Without an email address how are you going to reset your password when you forget it?'
-//     },
-//     password: {
-//       error: 'Choose something you use on a dozen other sites or something you won\'t remember'
-//     },
-//     terms: {
-//       label: 'Agree to Terms',
-//     },
-//   },
-//   stylesheet: formStyles,
-// };
 
 export default class App extends Component {
   constructor(props) {
@@ -63,10 +51,15 @@ export default class App extends Component {
   handleSubmit = () => {
     const value = this._form.getValue();
     const cityName = value.city
+    var countryname
+    var capital
+    var currency
+    var flag
+    var timezone
+    var laguage
     this.setState({searchKeyword: cityName})
     axios.get(`https://restcountries.eu/rest/v2/capital/${cityName}`)
     .then(res=> {
-      console.log(res)
       console.log('name')
       console.log(res.data[0].name)
       console.log('timezones')
@@ -75,20 +68,33 @@ export default class App extends Component {
       console.log(res.data[0].flag)
       console.log("currency")
       console.log(res.data[0].currencies[0].code)
+
       this.setState({
-        // name: res.data[0].name,
-        // timezone: res.data[0].timezones[0],
-        // flag: '',
-        // currency: res.data[0].currencies[0].code,
+
         searchResults: res.data[0],
         isShowingResults: true
       })
+
     })
   }
   
   render() {
+    const isShowingResults = this.state.isShowingResults
+    let timezone;
+    let currency;
+    let flag;
+    if (isShowingResults) {
+      timezone = <Text>{this.state.searchResults.timezones[0]}</Text>
+      currency = <Text>{this.state.searchResults.currencies[0].code}</Text>
+    } else {
+      timezone = '',
+      currency = '',
+      flag = ''
+    }
     return (
       <View style={styles.container}>
+            <MapView style={styles.map} />
+
         <Form 
           ref={c => this._form = c}
           type={City} 
@@ -98,16 +104,20 @@ export default class App extends Component {
           title="Enter"
           onPress={this.handleSubmit}
         />
-        {this.state.isShowingResults && (
-            <FlatList
-              data={this.state.searchResults}
-              renderItem={item => {
-                return (
-                    <Text>{item}</Text>
-                );
-              }}
-            />
-          )}
+
+        <Text>{timezone}</Text>
+        <Text>{currency}</Text>
+        <MapView
+        provider={PROVIDER_GOOGLE} 
+        style={{flex:1}}
+
+          initialRegion={{
+            latitude: 37.78825,
+            longitude: -122.4324,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+          }}
+        />
       </View>
     );
   }
@@ -119,5 +129,9 @@ const styles = StyleSheet.create({
     marginTop: 50,
     padding: 20,
     backgroundColor: '#ffffff',
+  },
+  map: {
+    width: 200,
+    height: 200,
   },
 });
