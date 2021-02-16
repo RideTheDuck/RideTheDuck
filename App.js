@@ -17,8 +17,9 @@ import {
 import { Header } from 'react-native-elements';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import SearchBox from './components/searchbox'
-import Geolocation from './components/geolocation'
-import CurrencyConverter from './components/fxConverter'
+import Geolocation from './components/geolocation' 
+import Fx from './components/fx'
+//import CurrencyConverter from './components/fxConverter'
 import axios from 'axios';
 
 export default function App(){
@@ -31,8 +32,9 @@ export default function App(){
       rightComponent={{ icon: 'home', color: '#fff' }}
     />
       <SearchBox />
-      <Geolocation/>
-      <CurrencyConverter/>
+      <Geolocation/> 
+      <Fx/>
+      {/* <CurrencyConverter/> */}
       </SafeAreaProvider>
 
   )   
