@@ -82,10 +82,13 @@ export default class App extends Component {
     const isShowingResults = this.state.isShowingResults
     let timezone;
     let currency;
-    let flag;
+    let name;
+    let language;
     if (isShowingResults) {
+      name = <Text>{this.state.searchResults.name}</Text>
       timezone = <Text>{this.state.searchResults.timezones[0]}</Text>
       currency = <Text>{this.state.searchResults.currencies[0].code}</Text>
+      language = <Text>{this.state.searchResults.languages[0].name}</Text>
     } else {
       timezone = '',
       currency = '',
@@ -104,9 +107,10 @@ export default class App extends Component {
           title="Enter"
           onPress={this.handleSubmit}
         />
-
+        <Text>{name}</Text>
         <Text>{timezone}</Text>
         <Text>{currency}</Text>
+        <Text>{language}</Text>
         <MapView
         provider={PROVIDER_GOOGLE} 
         style={{flex:1}}
