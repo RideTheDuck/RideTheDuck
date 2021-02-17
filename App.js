@@ -29,9 +29,9 @@ export default function App(){
       centerComponent={{ text: 'Ride the Duck 🦆', style: { color: '#fff' } }}
       rightComponent={{ icon: 'home', color: '#fff' }}
     />
-    <City style={{flex:1}}/>
-    <View style={{flex:1}} ><Text>Top 10 places to visit</Text></View>
-    <View style={{flex:1}} ><Text>Top 10 places to eat</Text></View>
+    <City style={styles.containerStyle}/>
+    <View style={styles.containerStyle}><Text>Top 10 places to visit</Text></View>
+    <View style={styles.containerStyle} ><Text>Top 10 places to eat</Text></View>
       
       </SafeAreaProvider>
   )   
@@ -39,8 +39,15 @@ export default function App(){
 
 
 const styles = StyleSheet.create({
-  container: {
+  containerStyle: {
     flex: 1,
-    backgroundColor: '#fff',
-  },
+    // shadowOffset:{  width: 10,  height: 10,  },
+    // shadowColor: 'grey',
+    // shadowOpacity: 1.0,
+    // borderWidth: 1,
+    backgroundColor: 'gold',
+    marginBottom: 20,
+    marginRight: 20,
+    marginLeft:20,
+  }
 });
