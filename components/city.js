@@ -28,8 +28,9 @@ export default class App extends Component {
     }
   }
   handleSubmit = () => {
-    const value = this._form.getValue();
-    const cityName = value.city
+    console.log('key pressed')
+    // const value = this._form.getValue();
+    const cityName = this._form.getValue();
     var countryname
     var capital
     var currency
@@ -79,11 +80,13 @@ export default class App extends Component {
           ref={c => this._form = c}
           type={City} 
           options={options}
+          value={this.value}
+          onSubmitEditing={console.log('pressed')}
         />
-        <Button
+        {/* <Button
           title="Enter"
           onPress={this.handleSubmit}
-        />
+        /> */}
         <Text>{name}</Text>
         <Text>{timezone}</Text>
         <Text>{currency}</Text>
