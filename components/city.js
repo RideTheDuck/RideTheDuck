@@ -9,36 +9,16 @@ const Form = t.form.Form;
 
 const City = t.struct({
   city: t.String,
-  // username: t.maybe(t.String),
-  // password: t.String,
-  // terms: t.Boolean
 });
 
-const formStyles = {
-  ...Form.stylesheet,
-  formGroup: {
-    normal: {
-      marginBottom: 10
-    },
-  },
-  controlLabel: {
-    normal: {
-      color: 'blue',
-      fontSize: 18,
-      marginBottom: 7,
-      fontWeight: '600'
-    },
-    // the style applied when a validation error occours
-    error: {
-      color: 'red',
-      fontSize: 18,
-      marginBottom: 7,
-      fontWeight: '600'
+const options = {
+  auto: 'none',
+  fields: {
+    city: {
+      placeholder: 'Search for destination'
     }
   }
 }
-
-
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -95,12 +75,10 @@ export default class App extends Component {
     }
     return (
       <View style={styles.container}>
-            <MapView style={styles.map} />
-
         <Form 
           ref={c => this._form = c}
           type={City} 
-          // options={options}
+          options={options}
         />
         <Button
           title="Enter"
@@ -111,17 +89,7 @@ export default class App extends Component {
         <Text>{currency}</Text>
         <Text>{language}</Text>
         {Keyboard.dismiss()}
-        <MapView
-        provider={PROVIDER_GOOGLE} 
-        style={{flex:1}}
-
-          initialRegion={{
-            latitude: 37.78825,
-            longitude: -122.4324,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
-          }}
-        />
+        <MapView style={styles.map} />
       </View>
     );
   }
