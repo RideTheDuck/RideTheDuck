@@ -34,7 +34,6 @@ export default class Fx extends Component {
             <Text>To: {this.state.Dest}</Text>  
             <Text>Enter Amount:</Text> 
             <TextInput placeholder='£££' onChangeText={this.number_two} />  
-            <Text>{this.state.Value}</Text>
             <CurrencyConverter from={this.state.Home} to={this.state.Dest} value={this.state.Value}/>   
         </View> 
         
