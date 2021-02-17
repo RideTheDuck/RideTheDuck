@@ -16,8 +16,8 @@ import {
 } from 'react-native';
 import { Header } from 'react-native-elements';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import SearchBox from './components/searchbox'
-import Geolocation from './components/geolocation'
+// import Geolocation from './components/geolocation'
+import City from './components/city'
 import axios from 'axios';
 
 export default function App(){
@@ -29,8 +29,8 @@ export default function App(){
       centerComponent={{ text: 'Ride the Duck 🦆', style: { color: '#fff' } }}
       rightComponent={{ icon: 'home', color: '#fff' }}
     />
-      <SearchBox />
-      <Geolocation/>
+    <City/>
+      
       </SafeAreaProvider>
   )   
 }
