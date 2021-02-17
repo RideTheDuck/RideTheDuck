@@ -15,7 +15,7 @@ const options = {
   auto: 'none',
   fields: {
     city: {
-      placeholder: 'Search for destination'
+      placeholder: 'Search for destination',
     }
   }
 }
@@ -23,21 +23,23 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      keyword: '',
       searchResults:[],
       isShowingResults: false,
     }
   }
   handleSubmit = () => {
-    console.log('key pressed')
+    console.log('!!!!!!')
     // const value = this._form.getValue();
-    const cityName = this._form.getValue();
+    const cityName = this.state.keyword;
+    console.log(cityName)
     var countryname
     var capital
     var currency
     var flag
     var timezone
     var laguage
-    this.setState({searchKeyword: cityName})
+    // this.setState({searchKeyword: cityName})
     axios.get(`https://restcountries.eu/rest/v2/capital/${cityName}`)
     .then(res=> {
       console.log('name')
@@ -50,7 +52,6 @@ export default class App extends Component {
       console.log(res.data[0].currencies[0].code)
 
       this.setState({
-
         searchResults: res.data[0],
         isShowingResults: true
       })
@@ -76,12 +77,11 @@ export default class App extends Component {
     }
     return (
       <View style={styles.container}>
-        <Form 
-          ref={c => this._form = c}
-          type={City} 
-          options={options}
-          value={this.value}
-          onSubmitEditing={console.log('pressed')}
+        <TextInput
+        style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+          onChangeText={text => {this.setState({keyword: text})}}
+          returnKeyType="go"
+          onSubmitEditing={() => this.handleSubmit()}
         />
         {/* <Button
           title="Enter"
@@ -91,7 +91,6 @@ export default class App extends Component {
         <Text>{timezone}</Text>
         <Text>{currency}</Text>
         <Text>{language}</Text>
-        {Keyboard.dismiss()}
         <MapView style={styles.map} />
       </View>
     );

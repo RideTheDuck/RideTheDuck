@@ -38,19 +38,6 @@ export default function App(){
 }
 
 
-// export default function App() {
-//   return (
-    
-//     <View style={styles.container}>
-      
-      
-//       <Text>Hello Ducks!</Text>
-//       <StatusBar style="auto" />
-//     </View>
-//   );
-// }
-
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
