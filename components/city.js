@@ -23,6 +23,7 @@ const options = {
     }
   }
 }
+
 export default class City extends Component {
   constructor(props) {
     super(props);
