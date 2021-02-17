@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Button, Text, Image, Keyboard, TouchableWithoutFeedback, TextInput } from 'react-native';
 import axios from 'axios';
-import { SvgUri } from 'react-native-svg';
+import { SvgUri } from 'react-native-svg'; 
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 
 import t from 'tcomb-form-native'; // 0.6.9
@@ -90,7 +90,7 @@ export default class City extends Component {
             <Icon.Button
               name="bookmark"
               color='#BF0000'
-              size='35'
+              //size='35'
               backgroundColor='#fff'
             // borderWidth='1'
             // borderColor='black'
