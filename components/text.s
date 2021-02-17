@@ -1,5 +1,5 @@
 import React, { Component, useState } from 'react';
-import { View, StyleSheet, Button, Text, Image, Keyboard, TouchableWithoutFeedback, TextInput } from 'react-native';
+import { View, StyleSheet, Button, Text, Image, Keyboard, TouchableWithoutFeedback, TextInput, FlatList } from 'react-native';
 import axios from 'axios';
 import { SvgUri } from 'react-native-svg';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
@@ -19,7 +19,6 @@ let name;
 let language;
 let capital;
 const Form = t.form.Form;
-
 const CitySearch = t.struct({
   city: t.String,
 });
@@ -60,24 +59,36 @@ export default class City extends Component {
           isShowingResults: true
         })
       })
+  }
+  render() {
+    const [term,setTerm] = useState('')
+    const [results, setResults] = useState([])
+    const searchApi = async () => {
+      const response = await yelp.get("/search", {
+        params: {
+          limit: 10,
+          term,
+          location:"london"
+        }
+      });
+      setResults(response.data.businesses)
+    };
+    const isShowingResults = this.state.isShowingResults
+    if (isShowingResults) {
+      // capital = <Text>{this.state.searchResults.capital}</Text>
+      // name = <Text>{this.state.searchResults.name}</Text>
+      // timezone = <Text>{this.state.searchResults.timezones[0]}</Text>
+      // currency = <Text>{this.state.searchResults.currencies[0].code}</Text>
+      // language = <Text>{this.state.searchResults.languages[0].name}</Text>
+    } else {
+      timezone = ''
+      currency = ''
+      name = ''
+      language = ''
+      capital = ''
     }
-    render() {
-      const isShowingResults = this.state.isShowingResults
-      if (isShowingResults) {
-        // capital = <Text>{this.state.searchResults.capital}</Text>
-        // name = <Text>{this.state.searchResults.name}</Text>
-        // timezone = <Text>{this.state.searchResults.timezones[0]}</Text>
-        // currency = <Text>{this.state.searchResults.currencies[0].code}</Text>
-        // language = <Text>{this.state.searchResults.languages[0].name}</Text>
-      } else {
-        timezone = ''
-        currency = ''
-        name = ''
-        language = ''
-        capital = ''
-      }
-      return (
-        <View style={styles.container}>
+    return (
+      <View style={styles.container}>
         <View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: "#F0EEEE", }}>
           <View style={{ flexDirection: 'row', alignItems: 'center', height: 40, borderColor: 'gray', borderWidth: 1, paddingLeft: 10, flex: 1, borderRadius: 5 }}>
             <Feather name='search' style={styles.iconStyle} />
@@ -87,9 +98,9 @@ export default class City extends Component {
               returnKeyType="go"
               placeholder="Search for destination"
               onSubmitEditing={() => this.handleSubmit()}
-              // term={term}
-              // onTermChange={setTerm}
-              // onTermSubmit={searchApi}
+              term={term}
+              onTermChange={setTerm}
+              onTermSubmit={searchApi}
             />
           </View>
           {/* <Icon.Button
@@ -101,63 +112,62 @@ export default class City extends Component {
           // borderColor='black'
           ></Icon.Button> */}
         </View>
-          {/* <Button
+        {/* <Button
           title="Enter"
           onPress={this.handleSubmit}
         /> */}
-          <Fx />
-          <View style={{ flexDirection: 'row' }}>
-            <MapView
-              style={styles.map}
-              provider={PROVIDER_GOOGLE}
-              initialRegion={{
-                latitude: `${lttd}`,
-                longitude: `${lng}`,
-                latitudeDelta: 20,
-                longitudeDelta: 30,
-              }}
-            />
-            <SvgUri
-              width="10%"
-              height="10%"
-              uri={`${flag}`}
-            />
-            <View style={{ width: 170, padding: 10 }}>
-              <Text style={{ fontSize: 15, fontWeight: 'bold' }}>{capital}</Text>
-              <Text>{capital}</Text>
-              <Text>{name}</Text>
-              <Text>{timezone}</Text>
-              {/* <Text>{currency}</Text> */}
-              <Text>{language}</Text>
-            </View>
+        <Fx />
+        <View style={{ flexDirection: 'row' }}>
+          <MapView
+            style={styles.map}
+            provider={PROVIDER_GOOGLE}
+            initialRegion={{
+              latitude: `${lttd}`,
+              longitude: `${lng}`,
+              latitudeDelta: 20,
+              longitudeDelta: 30,
+            }}
+          />
+          <SvgUri
+            width="10%"
+            height="10%"
+            uri={`${flag}`}
+          />
+          <View style={{ width: 170, padding: 10 }}>
+            <Text style={{ fontSize: 15, fontWeight: 'bold' }}>{capital}</Text>
+            <Text>{capital}</Text>
+            <Text>{name}</Text>
+            <Text>{timezone}</Text>
+            {/* <Text>{currency}</Text> */}
+            <Text>{language}</Text>
+            <Text>{results.length}</Text>
           </View>
         </View>
-      );
-    }
+      </View>
+
+    );
   }
+}
 
-  const styles = StyleSheet.create({
-    container: {
-      justifyContent: 'flex-start',
-      // marginTop: 50,
-      padding: 20,
-      backgroundColor: '#fff',
-      borderRadius: 10,
-      margin: 15,
-      flex: 1.5,
+const styles = StyleSheet.create({
+  container: {
+    justifyContent: 'flex-start',
+    // marginTop: 50,
+    padding: 20,
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    margin: 15,
+    flex: 1.5,
 
-    },
-    map: {
-      width: 180,
-      height: 150,
-    },
-    iconStyle: {
-      fontSize: 20,
-      color: "gray",
-      alignSelf: "center",
-      marginRight: 10
-    }
-  });
-
-
-  
+  },
+  map: {
+    width: 180,
+    height: 150,
+  },
+  iconStyle: {
+    fontSize: 20,
+    color: "gray",
+    alignSelf: "center",
+    marginRight: 10
+  }
+});
