@@ -5,6 +5,7 @@ import axios from 'axios';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import t from 'tcomb-form-native'; // 0.6.9
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Fx from './fx'
 
 const Form = t.form.Form;
 
@@ -30,7 +31,6 @@ export default class City extends Component {
     }
   }
   handleSubmit = () => {
-    console.log('!!!!!!')
     // const value = this._form.getValue();
     const cityName = this.state.keyword;
     console.log(cityName)
@@ -94,7 +94,7 @@ export default class City extends Component {
           title="Enter"
           onPress={this.handleSubmit}
         /> */}
-        
+        <Fx />
         <View style={{ flexDirection: 'row' }}>
           <MapView style={styles.map} />
           <View style={{ width: 170, padding: 10}}>
