@@ -5,9 +5,15 @@ import { SvgUri } from 'react-native-svg';
 import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
 
 import t from 'tcomb-form-native'; // 0.6.9
-var lat
-var lng
-var flag
+
+var flag;
+let lttd;
+let lng;
+let timezone;
+let currency;
+let name;
+let language;
+let capital;
 const Form = t.form.Form;
 
 const City = t.struct({
@@ -53,31 +59,16 @@ export default class App extends Component {
   handleSubmit = () => {
     const value = this._form.getValue();
     const cityName = value.city
-    var countryname
-    var capital
-    var currency
-    
-    var timezone
-    var laguage
-    
     this.setState({searchKeyword: cityName})
     axios.get(`https://restcountries.eu/rest/v2/capital/${cityName}`)
     .then(res=> {
-      console.log('name')
-      console.log(res.data[0].name)
-      lat=res.data[0].latlng[0]
-      lng = res.data[0].latlng[1]
-      console.log('LATITUDE')
-      console.log(lat, lng)
-      console.log('timezones')
-      console.log(res.data[0].timezones[0])
-      console.log("flag")
+      name=res.data[0].name
+      timezone = res.data[0].timezones[0]
       flag=res.data[0].flag
-      console.log("currency")
-      console.log(res.data[0].currencies[0].code)
-
+      currency = res.data[0].currencies[0].code
+      language = res.data[0].languages[0].name
+      capital = res.data[0].capital
       this.setState({
-
         searchResults: res.data[0],
         isShowingResults: true
       })
@@ -87,24 +78,23 @@ export default class App extends Component {
   
   render() {
     const isShowingResults = this.state.isShowingResults
-    let timezone;
-    let currency;
-    let name;
-    let language;
     if (isShowingResults) {
-      name = <Text>{this.state.searchResults.name}</Text>
-      timezone = <Text>{this.state.searchResults.timezones[0]}</Text>
-      currency = <Text>{this.state.searchResults.currencies[0].code}</Text>
-      language = <Text>{this.state.searchResults.languages[0].name}</Text>
+      // name = <Text>{this.state.searchResults.name}</Text>
+      // timezone = <Text>{this.state.searchResults.timezones[0]}</Text>
+      // currency = <Text>{this.state.searchResults.currencies[0].code}</Text>
+      // language = <Text>{this.state.searchResults.languages[0].name}</Text>
+      // lttd = `${this.state.searchResults.latlng[0]}`
+      // lng = `${this.state.searchResults.latlng[1]}`
+      // console.log(lttd, lng)
     } else {
       timezone = '',
       currency = '',
       flag = ''
+      lttd = 0
+      lng =0
     }
     return (
       <View style={styles.container}>
-        
-
         <Form 
           ref={c => this._form = c}
           type={City} 
@@ -118,19 +108,21 @@ export default class App extends Component {
         <Text>{timezone}</Text>
         <Text>{currency}</Text>
         <Text>{language}</Text>
+        <Text>
         <MapView
           style={styles.map}
           provider={PROVIDER_GOOGLE} 
           initialRegion={{
-           latitude: `${lat}`,
+            latitude:`${lttd}`,
             longitude: `${lng}`,
-            //  latitudeDelta: 0.04,
-            //  longitudeDelta: 0.05,
+            latitudeDelta:20,
+            longitudeDelta:30,
           }}
-        />
+          />
+          </Text>
         <SvgUri
-          width="50%"
-          height="50%"
+          width="10%"
+          height="10%"
           uri={`${flag}`}
         />
       </View>
