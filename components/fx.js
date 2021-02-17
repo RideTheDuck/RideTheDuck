@@ -16,11 +16,16 @@ export default class Fx extends Component {
     render() {
         return (
         <View>
-            <Text>From: {this.state.Home}</Text>
-            <Text>To: {this.state.Dest}</Text>
-            <Text>Enter Amount:</Text>
-            <TextInput placeholder='£££' onChangeText={this.number_two} />
+            
+            <View style={{alignItems:'flex-start'}}>
+            <TextInput placeholder='£££' onChangeText={this.number_two} style={{width: 100}}/>
+            <Text>1  {this.state.Home}</Text>
+            <View style={{ flexDirection: 'row', justifyContent: 'center'}}>
             <CurrencyConverter from={this.state.Home} to={this.state.Dest} value={this.state.Value}/>
+            <Text>  {this.state.Dest}</Text> 
+            </View>
+            
+            </View>
         </View>
         )
     }
@@ -29,8 +34,6 @@ export default class Fx extends Component {
 class CurrencyConverter extends React.Component {
   constructor(props) {
     super(props); 
-    console.log("props here")
-    console.log(props)
     if (props.from && props.to && props.value) {
       this.state = {
         from: props.from.toUpperCase(),
@@ -45,7 +48,6 @@ class CurrencyConverter extends React.Component {
     }
   }
   componentDidMount() { 
-    console.log('componentDidMount')
     const codes = ['CAD', 'HKD', 'ISK', 'PHP', 'DKK', 'HUF', 'CZK', 'AUD', 'RON', 'SEK', 'IDR', 'INR', 'BRL', 'RUB', 'HRK', 'JPY', 'THB', 'CHF', 'SGD', 'PLN', 'BGN', 'TRY', 'CNY', 'NOK', 'NZD', 'ZAR', 'USD', 'MXN', 'ILS', 'GBP', 'KRW', 'MYR', 'EUR'];
     if (!(codes.includes(this.state.from) && codes.includes(this.state.to))) {
       throw new Error(`Country code is not supprted, supported country codes are: ${codes}`);
