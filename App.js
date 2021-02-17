@@ -29,7 +29,9 @@ export default function App(){
       centerComponent={{ text: 'Ride the Duck 🦆', style: { color: '#fff' } }}
       rightComponent={{ icon: 'home', color: '#fff' }}
     />
-    <City/>
+    <City style={{flex:1}}/>
+    <View style={{flex:1}} ><Text>Top 10 places to visit</Text></View>
+    <View style={{flex:1}} ><Text>Top 10 places to eat</Text></View>
       
       </SafeAreaProvider>
   )   
