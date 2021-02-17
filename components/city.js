@@ -6,6 +6,8 @@ import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import t from 'tcomb-form-native'; // 0.6.9
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Fx from './fx'
+import CurrencyFormat from 'react-currency-format';
+
 
 const Form = t.form.Form;
 
@@ -33,7 +35,6 @@ export default class City extends Component {
   handleSubmit = () => {
     // const value = this._form.getValue();
     const cityName = this.state.keyword;
-    console.log(cityName)
     var countryname
     var capital
     var currency
