@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Button, Text, Image, Keyboard, TouchableWithoutFeedback, TextInput} from 'react-native';
+import { View, StyleSheet, Button, Text, Image, Keyboard, TouchableWithoutFeedback, TextInput } from 'react-native';
 import axios from 'axios';
 // import SvgUri from 'react-native-svg-uri';
-import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import t from 'tcomb-form-native'; // 0.6.9
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const Form = t.form.Form;
 
-const City = t.struct({
+const CitySearch = t.struct({
   city: t.String,
 });
 
@@ -19,12 +20,12 @@ const options = {
     }
   }
 }
-export default class App extends Component {
+export default class City extends Component {
   constructor(props) {
     super(props);
     this.state = {
       keyword: '',
-      searchResults:[],
+      searchResults: [],
       isShowingResults: false,
     }
   }
@@ -41,57 +42,70 @@ export default class App extends Component {
     var laguage
     // this.setState({searchKeyword: cityName})
     axios.get(`https://restcountries.eu/rest/v2/capital/${cityName}`)
-    .then(res=> {
-      console.log('name')
-      console.log(res.data[0].name)
-      console.log('timezones')
-      console.log(res.data[0].timezones[0])
-      console.log("flag")
-      console.log(res.data[0].flag)
-      console.log("currency")
-      console.log(res.data[0].currencies[0].code)
-
-      this.setState({
-        searchResults: res.data[0],
-        isShowingResults: true
+      .then(res => {
+        this.setState({
+          searchResults: res.data[0],
+          isShowingResults: true
+        })
       })
-
-    })
   }
-  
+
   render() {
     const isShowingResults = this.state.isShowingResults
     let timezone;
     let currency;
     let name;
     let language;
+    let capital;
     if (isShowingResults) {
+      capital = <Text>{this.state.searchResults.capital}</Text>
       name = <Text>{this.state.searchResults.name}</Text>
       timezone = <Text>{this.state.searchResults.timezones[0]}</Text>
       currency = <Text>{this.state.searchResults.currencies[0].code}</Text>
       language = <Text>{this.state.searchResults.languages[0].name}</Text>
     } else {
-      timezone = '',
-      currency = '',
-      flag = ''
+      timezone = ''
+      currency= ''
+      name= ''
+      language= ''
+      capital= ''
     }
     return (
       <View style={styles.container}>
-        <TextInput
-        style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-          onChangeText={text => {this.setState({keyword: text})}}
-          returnKeyType="go"
-          onSubmitEditing={() => this.handleSubmit()}
-        />
+        <View style={{ flexDirection: 'row', alignItems: 'center'}}>
+          <TextInput
+            style={{ height: 40, borderColor: 'gray', borderWidth: 1, paddingLeft: 10, flex: 1, borderRadius: 5 }}
+            onChangeText={text => { this.setState({ keyword: text }) }}
+            returnKeyType="go"
+            placeholder="Search for destination"
+
+            onSubmitEditing={() => this.handleSubmit()}
+          />
+          <Icon.Button
+            name="bookmark"
+            color='#BF0000'
+            size='35'
+            backgroundColor='#fff'
+          // borderWidth='1'
+          // borderColor='black'
+          ></Icon.Button>
+        </View>
         {/* <Button
           title="Enter"
           onPress={this.handleSubmit}
         /> */}
-        <Text>{name}</Text>
-        <Text>{timezone}</Text>
-        <Text>{currency}</Text>
-        <Text>{language}</Text>
-        <MapView style={styles.map} />
+        
+        <View style={{ flexDirection: 'row' }}>
+          <MapView style={styles.map} />
+          <View style={{ width: 170, padding: 10}}>
+            <Text style={{ fontSize: 15, fontWeight: 'bold'}}>{capital}</Text>
+            <Text>{capital}</Text>
+            <Text>{name}</Text>
+            <Text>{timezone}</Text>
+            {/* <Text>{currency}</Text> */}
+            <Text>{language}</Text>
+          </View>
+        </View>
       </View>
     );
   }
@@ -99,13 +113,17 @@ export default class App extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     // marginTop: 50,
     padding: 20,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    margin: 15,
+    flex: 1.5,
+
   },
   map: {
-    width: 200,
-    height: 200,
+    width: 180,
+    height: 150,
   },
 });
