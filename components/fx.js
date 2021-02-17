@@ -2,26 +2,32 @@ import React, {Component} from 'react';
 import { View, Text, TextInput } from 'react-native'; 
 import CurrencyConverter from 'react-currency-conv'; 
 
-export default class Fx extends Component {  
-    state = {
-        Home: 'USD', 
-        Dest: 'KRW', 
-        Value: 1
-    } 
+export default class Fx extends Component {   
 
-    value = (value) => {
-        this.setState({
+    
+        state = {
             Home: 'USD', 
-            Dest: 'KRW', 
-            Value: value
-        });
-    }
+            Dest: 'KRW',  
+            Value: 1
+        }    
+    
 
-    render() { 
+    //number = (num) => {
+    //    this.setState({ 
+    //        Value: num
+    //    });
+    //} 
+
+   
+
+    render() {  
+        console.log(this.state.Value)
         return ( 
         <View> 
-            <Text>From: {this.state.Home}</Text> <Text>To: {this.state.Dest}</Text> 
-            <CurrencyConverter from={this.state.Home} to={this.state.Dest} value={this.state.Value}/> 
+            <Text>From: {this.state.Home}</Text> <Text>To: {this.state.Dest}</Text>  
+            <Text>Enter Amount:</Text> 
+            <TextInput placeholder='£££' onChangeText={(num) => this.setState({Value: num.textContent})} />
+            <CurrencyConverter from={this.state.Home} to={this.state.Dest} value={this.state.Value}/>  
         </View>
         )
     }
