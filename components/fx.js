@@ -4,33 +4,44 @@ import CurrencyConverter from 'react-currency-conv';
 
 export default class Fx extends Component {   
 
-    
-        state = {
+    constructor(props) { 
+        super(props)
+        this.state = {
             Home: 'USD', 
             Dest: 'KRW',  
             Value: 1
-        }    
-    
+        }         
+    }
 
-    //number = (num) => {
+    //number = (e) => {
     //    this.setState({ 
-    //        Value: num
+    //        Value: parseInt(e)
     //    });
     //} 
 
+    number_two = (e) => {
+        this.setState({Value: e})
+    }
+
    
 
-    render() {  
+    render() {      
+        console.log(typeof (this.state.Value)) 
         console.log(this.state.Value)
-        return ( 
+        return (   
         <View> 
-            <Text>From: {this.state.Home}</Text> <Text>To: {this.state.Dest}</Text>  
+            <Text>From: {this.state.Home}</Text> 
+            <Text>To: {this.state.Dest}</Text>  
             <Text>Enter Amount:</Text> 
-            <TextInput placeholder='£££' onChangeText={(num) => this.setState({Value: num.textContent})} />
-            <CurrencyConverter from={this.state.Home} to={this.state.Dest} value={this.state.Value}/>  
-        </View>
-        )
-    }
+            <TextInput placeholder='£££' onChangeText={this.number_two} />  
+            <Text>{this.state.Value}</Text>
+            <CurrencyConverter from={this.state.Home} to={this.state.Dest} value={this.state.Value}/>   
+        </View> 
+        
+        ) 
+    } 
 }
 
-//<Text>From: {this.state.Home}</Text> <TextInput onChangeText={text => onChangeText(text)} value={value.Value} />
+//<Text>From: {this.state.Home}</Text> <TextInput onChangeText={text => onChangeText(text)} value={value.Value} /> 
+
+// e => this.setState({Value: parseInt(e)})
