@@ -32,6 +32,7 @@ export default class City extends Component {
   handleSubmit = () => {
     const cityName = this.state.keyword;
     
+    
     axios.get(`https://restcountries.eu/rest/v2/capital/${cityName}`)
       .then(res => {
         name = res.data[0].name
