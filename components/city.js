@@ -46,8 +46,6 @@ export default class City extends Component {
           isShowingResults: true,
         })
         this.changeCurrency(newCurrency)
-        console.log('city after')
-        console.log(this.state.currency)
       })
     }
 
@@ -68,9 +66,9 @@ export default class City extends Component {
       }
       return (
         <View style={styles.container}>
-          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+          <View style={{ flexDirection: 'row', alignItems: 'center'}}>
             <TextInput
-              style={{ height: 40, borderColor: 'gray', borderWidth: 1, paddingLeft: 10, flex: 1, borderRadius: 5 }}
+              style={{ height: 40, borderColor: 'gray', borderWidth: 1, paddingLeft: 10, flex: 1, borderRadius: 5, fontSize:20 }}
               onChangeText={text => { this.setState({ keyword: text }) }}
               returnKeyType="go"
               placeholder="Search for destination"
@@ -85,8 +83,19 @@ export default class City extends Component {
             // borderColor='black'
             ></Icon.Button>
           </View>
-          <Fx Dest={this.state.currency}/>
-          <View style={{ flexDirection: 'row' }}>
+            
+            <SvgUri
+              width="20%"
+              height='10%'
+              style={{alignSelf:'center'}}
+              uri={`${flag}`}
+            />
+            <View style={{ padding: 10}}>
+              <Text style={{ fontSize: 24, fontWeight: 'bold', alignSelf:'center' }}>{capital}</Text>
+              <Text style={{fontSize: 24, alignSelf:'center', textAlign:'center'}}>{name}</Text>
+              <Text style={{fontSize: 24, alignSelf:'center'}}>{timezone}</Text>
+              {/* <Text style={{fontSize: 24, alignSelf:'center'}}>{language}</Text> */}
+            </View>
             <MapView
               style={styles.map}
               provider={PROVIDER_GOOGLE}
@@ -97,18 +106,9 @@ export default class City extends Component {
                 longitudeDelta: 30,
               }}
             />
-            <SvgUri
-              width="10%"
-              height="10%"
-              uri={`${flag}`}
-            />
-            <View style={{ width: 170, padding: 10 }}>
-              <Text style={{ fontSize: 15, fontWeight: 'bold' }}>{capital}</Text>
-              <Text>{name}</Text>
-              <Text>{timezone}</Text>
-              <Text>{language}</Text>
-            </View>
-          </View>
+            <Text style={{fontWeight:'bold', fontSize: 24, marginTop: 30, alignSelf: 'center'}}>Exchange Rate</Text>
+            <Fx Dest={this.state.currency}/>
+            
         </View>
       );
     }
@@ -126,7 +126,8 @@ export default class City extends Component {
 
     },
     map: {
-      width: 180,
-      height: 150,
+      width: 250,
+      height: 250,
+      alignSelf: 'center'
     },
   });

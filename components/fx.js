@@ -11,7 +11,6 @@ export default class Fx extends Component {
   }
   componentDidUpdate(prevProps) {
     if (prevProps.Dest !== this.props.Dest) {
-      console.log('currency has changed!!')
       this.setState({
         Dest: this.props.Dest
       })
@@ -23,14 +22,16 @@ export default class Fx extends Component {
   }
   render() {
     return (
-      <View>
+      <View style={{alignSelf:'center'}}>
         <View style={{ alignItems: 'flex-start' }}>
-          <TextInput placeholder='£££' onChangeText={this.number_two} style={{  width: 100 }} />
-          <Text>1  {this.state.Home}</Text>
-          <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+          
+          <View style={{ flexDirection: 'row', justifyContent: 'space-even'}}>
+            <Text style={{fontSize: 24, marginTop: 15}}>{this.state.Value}  {this.state.Home}  = </Text>
             <CurrencyConverter from={this.state.Home} to={this.state.Dest} value={this.state.Value} />
-            <Text>  {this.state.Dest}</Text>
+            <Text style={{fontSize: 24, marginTop: 15}}> {this.state.Dest}</Text>
           </View>
+          <TextInput placeholder='$£€' onChangeText={this.number_two} style={{ borderWidth:1, borderRadius:5, paddingLeft: 10, paddingRight: 10, borderColor:'grey', fontSize: 24, alignSelf:'center', marginTop: 15}} />
+
         </View>
       </View>
     )
@@ -104,6 +105,6 @@ class CurrencyConverter extends React.Component {
     }
   }
   render() {
-    return <Text>{this.state.convertedValue}</Text>
+    return <Text style={{fontSize: 24, marginTop: 15}} >{this.state.convertedValue}</Text>
   }
 }

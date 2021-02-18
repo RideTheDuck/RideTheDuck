@@ -35,12 +35,12 @@ export default function App() {
         rightComponent={{ icon: 'home', color: '#fff' }}
       />
       <City />
-      <View style={styles.containerStyle}>
+      {/* <View style={styles.containerStyle}>
         <Text style={{ padding:10, fontSize: 12, fontWeight:'bold'}}>Top 10 places to visit</Text>
-      </View>
-      <View style={styles.containerStyle} >
+      </View> */}
+      {/* <View style={styles.containerStyle} >
         <Text style={{ padding:10, fontSize: 12, fontWeight:'bold' }}>Top 10 places to eat</Text>
-      </View>
+      </View> */}
     </SafeAreaProvider>
   )
 }
