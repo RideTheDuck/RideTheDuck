@@ -3,7 +3,7 @@ import { View, StyleSheet, Button, Text, Image, Keyboard, TouchableWithoutFeedba
 import axios from 'axios';
 import { SvgUri } from 'react-native-svg'; 
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
-
+import { Feather } from "@expo/vector-icons";
 // import t from 'tcomb-form-native'; // 0.6.9
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Fx from './fx'
@@ -68,23 +68,30 @@ export default class City extends Component {
       }
       return (
         <View style={styles.container}>
-          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: "#F0EEEE", }}>
+          <View style={{ flexDirection: 'row', alignItems: 'center', height: 40, borderColor: 'gray', borderWidth: 1, paddingLeft: 10, flex: 1, borderRadius: 5 }}>
+            <Feather name='search' style={styles.iconStyle} />
             <TextInput
-              style={{ height: 40, borderColor: 'gray', borderWidth: 1, paddingLeft: 10, flex: 1, borderRadius: 5 }}
+              style={{ fontSize: 18 }}
               onChangeText={text => { this.setState({ keyword: text }) }}
               returnKeyType="go"
               placeholder="Search for destination"
               onSubmitEditing={() => this.handleSubmit()}
+              // term={term}
+              // onTermChange={setTerm}
+              // onTermSubmit={searchApi}
             />
-            <Icon.Button
+          </View>
+            {/* <Icon.Button
               name="bookmark"
               color='#BF0000'
               //size='35'
               backgroundColor='#fff'
             // borderWidth='1'
             // borderColor='black'
-            ></Icon.Button>
+            ></Icon.Button> */}
           </View>
+          
           <Fx Dest={this.state.currency}/>
           <View style={{ flexDirection: 'row' }}>
             <MapView
@@ -129,4 +136,10 @@ export default class City extends Component {
       width: 180,
       height: 150,
     },
+    iconStyle: {
+      fontSize: 20,
+      color: "gray",
+      alignSelf: "center",
+      marginRight: 10
+    }
   });
