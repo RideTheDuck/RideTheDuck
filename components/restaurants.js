@@ -10,6 +10,12 @@ const Restaurants = () => {
   const [results, setResults] = useState([])
   const [errorMessage, setErrorMessage] = useState([])
 
+  const filterByRating = (rate) => {
+    return results.filter(result => {
+      return result.rating >= rate
+    })
+  }
+
   const searchApi = async (defaultLocation) => {
     try {
       const response = await yelp.get("/search", {
@@ -26,15 +32,15 @@ const Restaurants = () => {
     }
   };
   //Sets a default search value
-  useEffect(() => {
+  useEffect((defaultLocation) => {
     searchApi('London')
   }, [])
 
   return (
     <View>
       <Search location={location} onLocationChange={setLocation} onLocationSubmit={() => searchApi(defaultLocation)} />
-      {errorMessage ? <Text>{results.length}</Text> : null}
-      <RestaurantList />
+      {errorMessage ? <Text>{results.length} Restaurants found</Text> : null}
+      <RestaurantList results={filterByRating(4)} title="Best Restaurants" />
     </View>
   );
 }
