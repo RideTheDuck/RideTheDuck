@@ -45,6 +45,8 @@ export default class City extends Component {
           isShowingResults: true,
         })
         this.changeCurrency(newCurrency)
+        console.log('city after')
+        console.log(this.state.currency)
       })
     }
 
