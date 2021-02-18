@@ -4,34 +4,20 @@ import axios from 'axios';
 import { SvgUri } from 'react-native-svg'; 
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 
-import t from 'tcomb-form-native'; // 0.6.9
+// import t from 'tcomb-form-native'; // 0.6.9
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Fx from './fx'
-import CurrencyFormat from 'react-currency-format';
+// import CurrencyFormat from 'react-currency-format';
 
 
 var flag;
 let lttd;
 let lng;
 let timezone;
-let currency;
+let newCurrency;
 let name;
 let language;
 let capital;
-const Form = t.form.Form;
-
-const CitySearch = t.struct({
-  city: t.String,
-});
-
-const options = {
-  auto: 'none',
-  fields: {
-    city: {
-      placeholder: 'Search for destination',
-    }
-  }
-}
 
 export default class City extends Component {
   constructor(props) {
@@ -39,39 +25,43 @@ export default class City extends Component {
     this.state = {
       keyword: '',
       searchResults: [],
+      currency: 'USD',
       isShowingResults: false,
     }
   }
   handleSubmit = () => {
-    // const value = this._form.getValue();
-    // const cityName = value.city
     const cityName = this.state.keyword;
-    // this.setState({searchKeyword: cityName})
+    
+    
     axios.get(`https://restcountries.eu/rest/v2/capital/${cityName}`)
       .then(res => {
         name = res.data[0].name
         timezone = res.data[0].timezones[0]
         flag = res.data[0].flag
-        currency = res.data[0].currencies[0].code
+        newCurrency = res.data[0].currencies[0].code
         language = res.data[0].languages[0].name
         capital = res.data[0].capital
         this.setState({
           searchResults: res.data[0],
-          isShowingResults: true
+          isShowingResults: true,
         })
+        this.changeCurrency(newCurrency)
+        console.log('city after')
+        console.log(this.state.currency)
       })
     }
+
+    changeCurrency = (newCurrency) => {
+      this.setState({
+        currency: newCurrency
+      })
+    }
+
     render() {
       const isShowingResults = this.state.isShowingResults
       if (isShowingResults) {
-        // capital = <Text>{this.state.searchResults.capital}</Text>
-        // name = <Text>{this.state.searchResults.name}</Text>
-        // timezone = <Text>{this.state.searchResults.timezones[0]}</Text>
-        // currency = <Text>{this.state.searchResults.currencies[0].code}</Text>
-        // language = <Text>{this.state.searchResults.languages[0].name}</Text>
       } else {
         timezone = ''
-        currency = ''
         name = ''
         language = ''
         capital = ''
@@ -84,7 +74,6 @@ export default class City extends Component {
               onChangeText={text => { this.setState({ keyword: text }) }}
               returnKeyType="go"
               placeholder="Search for destination"
-
               onSubmitEditing={() => this.handleSubmit()}
             />
             <Icon.Button
@@ -96,11 +85,7 @@ export default class City extends Component {
             // borderColor='black'
             ></Icon.Button>
           </View>
-          {/* <Button
-          title="Enter"
-          onPress={this.handleSubmit}
-        /> */}
-          <Fx />
+          <Fx Dest={this.state.currency}/>
           <View style={{ flexDirection: 'row' }}>
             <MapView
               style={styles.map}
@@ -119,10 +104,8 @@ export default class City extends Component {
             />
             <View style={{ width: 170, padding: 10 }}>
               <Text style={{ fontSize: 15, fontWeight: 'bold' }}>{capital}</Text>
-              <Text>{capital}</Text>
               <Text>{name}</Text>
               <Text>{timezone}</Text>
-              {/* <Text>{currency}</Text> */}
               <Text>{language}</Text>
             </View>
           </View>
