@@ -19,7 +19,7 @@ import {
 import { Header } from 'react-native-elements';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/FontAwesome';
-
+import Weather from './components/weather'
 // import Geolocation from './components/geolocation'
 import City from './components/city'
 import axios from 'axios';
@@ -40,6 +40,9 @@ export default function App() {
       </View>
       <View style={styles.containerStyle} >
         <Text style={{ padding:10, fontSize: 12, fontWeight:'bold' }}>Top 10 places to eat</Text>
+      </View>
+      <View style={styles.containerStyle} >
+        <Weather />
       </View>
     </SafeAreaProvider>
   )
