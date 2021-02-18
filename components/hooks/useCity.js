@@ -2,22 +2,36 @@ import {useEffect, useState} from 'react';
 import city from "../../api/city";
 
 export default () => {
-  const [results, setResults] = useState([])
-  const [errorMessage, setErrorMessage] = useState([])
+  const [resultsCity, setResultsCity] = useState([])
+  const [errorMessageCity, setErrorMessageCity] = useState([])
 
   
-  const searchApi = async searchLocation => {
+  const searchApiCity = async searchLocation => {
     try {
-      const response = await city.get(`/${searchLocation}`);
-      setResults(response.data[0])
-      console.log(setResults)
+      const responseCity = await city.get(`/${searchLocation}`);
+      setResultsCity(responseCity.data[0])
+      console.log(setResultsCity)
     } catch (err) {
-      setErrorMessage("Something went wrong");
+      setErrorMessageCity("Something went wrong");
     }
   };
   //Sets a default search value
   useEffect(() => {
-    searchApi('London')
+    searchApiCity('London')
   }, [])
-  return [searchApi,results,errorMessage]
+  return [searchApiCity,resultsCity,errorMessageCity]
 }
+
+// axios.get(`https://restcountries.eu/rest/v2/capital/${cityName}`)
+//     .then(res => {
+//       name = res.data[0].name
+//       timezone = res.data[0].timezones[0]
+//       flag = res.data[0].flag
+//       currency = res.data[0].currencies[0].code
+//       language = res.data[0].languages[0].name
+//       capital = res.data[0].capital
+//       this.setState({
+//         searchResults: res.data[0],
+//         isShowingResults: true
+//       })
+//     })
