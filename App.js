@@ -48,7 +48,7 @@ export default function App() {
 
 const styles = StyleSheet.create({
   containerStyle: {
-    flex: 1,
+    flex: 1, 
     // shadowOffset:{  width: 10,  height: 10,  },
     // shadowColor: 'grey',
     // shadowOpacity: 1.0,

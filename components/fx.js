@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { View, Text, TextInput } from 'react-native';
+import { View, Text, TextInput, StyleSheet } from 'react-native';
 export default class Fx extends Component {
     constructor(props) {
         super(props)
@@ -15,19 +15,29 @@ export default class Fx extends Component {
     }
     render() {
         return (
-        <View>
-            <View style={{alignItems:'flex-start'}}>
-            <TextInput placeholder='£££' onChangeText={this.number_two} style={{width: 100}}/>
-            <Text>1  {this.state.Home}</Text>
-            <View style={{ flexDirection: 'row', justifyContent: 'center'}}>
-            <CurrencyConverter from={this.state.Home} to={this.state.Dest} value={this.state.Value}/>
-            <Text>  {this.state.Dest}</Text> 
-            </View>
+        <View style={{color: 'lightsteelblue', marginBottom: 20, marginTop: 20}}>
+            <View style={{fontSize: 24}}> 
+
+            <TextInput style={{flexDirection: 'row', alignSelf: 'center', justifyContent: 'center', borderWidth: 1.5, width: 100, paddingHorizontal: 10, borderRadius: 5, width: 100, fontSize: 24, alignContent: 'center' }} placeholder='£££' onChangeText={this.number_two} /> 
+
+            <Text style={{color: '#000080', fontWeight: 'bold', fontSize: 24, padding: 10, width: 100, alignSelf: 'center'}}> {this.state.Value} {this.state.Home}</Text> 
+
+            <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', fontSize: 26}}> 
+
+            <CurrencyConverter style={{color: '#000080', fontSize: 24}} from={this.state.Home} to={this.state.Dest} value={this.state.Value}/> 
+
+            <Text style={{marginLeft: 10, fontSize: 24, color: 'navy', fontWeight: 'bold'}}>{this.state.Dest}</Text>  
+
+            </View> 
+
             </View>
         </View>
         )
     }
 }
+
+
+
 
 class CurrencyConverter extends React.Component {
   constructor(props) {
