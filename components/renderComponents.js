@@ -1,5 +1,5 @@
 import React, { useState} from 'react';
-import { View, Text, Stylesheet } from 'react-native';
+import { View, Text, Stylesheet, ScrollView} from 'react-native';
 import Search from "./search"
 import RestaurantList from "./restaurantList"
 import LandmarksList from "./landmarksList"
@@ -27,7 +27,7 @@ const RenderComponents = () => {
   }
 
   return (
-    <View>
+    <ScrollView>
       <Search location={location} onLocationChange={setLocation} onLocationSubmit={() => { searchApi(location); searchApiCity(location); searchApiLandmark(location)}} />
       
       {errorMessage ? <Text>{results.length} Restaurants found</Text> : null}
@@ -39,7 +39,7 @@ const RenderComponents = () => {
       {errorMessageLandmark ? <Text>{resultsLandmark.length} Landmarks found</Text> : null}
       <LandmarksList results={filterByRatingLandmark(4)} title="Best Places" />
       
-    </View>
+    </ScrollView>
     
   );
   
