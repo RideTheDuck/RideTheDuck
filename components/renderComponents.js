@@ -3,12 +3,12 @@ import { View, Text, Stylesheet } from 'react-native';
 import Search from "./search"
 import RestaurantList from "./restaurantList"
 import LandmarksList from "./landmarksList"
-import CityInfoList from "./cityInfoList"
+import CityInformation from "./cityInformation"
 import useRestaurants from "./hooks/useRestaurants"
 import useLandmark from "./hooks/useLandmark"
 import useCity from"./hooks/useCity"
 
-const Restaurants = () => {
+const RenderComponents = () => {
 
   const [location, setLocation] = useState('')
   const [searchApi, results, errorMessage] = useRestaurants();
@@ -33,7 +33,7 @@ const Restaurants = () => {
       {errorMessage ? <Text>{results.length} Restaurants found</Text> : null}
       <RestaurantList results={filterByRating(4)} title="Best Restaurants" />
       
-      <CityInfoList results={resultsCity} title="About" />
+      <CityInformation results={resultsCity} title="About" />
       {errorMessageCity ? <Text>{resultsCity.length} City found</Text> : null}
 
       {errorMessageLandmark ? <Text>{resultsLandmark.length} Landmarks found</Text> : null}
@@ -44,4 +44,4 @@ const Restaurants = () => {
   );
   
 }
-export default Restaurants;
+export default RenderComponents;
