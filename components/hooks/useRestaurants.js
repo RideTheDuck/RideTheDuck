@@ -21,6 +21,7 @@ export default () => {
     }
   };
   //Sets a default search value
+  
   useEffect(() => {
     searchApi('London')
   }, [])

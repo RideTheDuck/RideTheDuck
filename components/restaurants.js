@@ -30,6 +30,7 @@ const Restaurants = () => {
       
       <CityInfoList results={resultsCity} title="About" />
       {errorMessageCity ? <Text>{resultsCity.length} City found</Text> : null}
+      
     </View>
     
   );
