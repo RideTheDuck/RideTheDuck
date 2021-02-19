@@ -18,15 +18,12 @@ import {
 } from 'react-native';
 import { Header } from 'react-native-elements';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Flights from './components/flights'
 
 // import Geolocation from './components/geolocation'
 import City from './components/city'
 import axios from 'axios';
 export default function App() {
-
-
-
   return (
     <SafeAreaProvider style={{backgroundColor:'lightblue'}}>
       <Header
@@ -34,13 +31,15 @@ export default function App() {
         centerComponent={{ text: 'Ride the Duck 🦆', style: { color: '#fff', fontWeight:'bold' } }}
         rightComponent={{ icon: 'home', color: '#fff' }}
       />
-      <City />
+      <Flights />
+      {/* <City /> */}
       {/* <View style={styles.containerStyle}>
         <Text style={{ padding:10, fontSize: 12, fontWeight:'bold'}}>Top 10 places to visit</Text>
       </View> */}
       {/* <View style={styles.containerStyle} >
         <Text style={{ padding:10, fontSize: 12, fontWeight:'bold' }}>Top 10 places to eat</Text>
       </View> */}
+      
     </SafeAreaProvider>
   )
 }
