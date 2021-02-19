@@ -15,7 +15,7 @@ export default class Geolocation extends Component {
 
   refresh = () => {
     navigator.geolocation.getCurrentPosition(
-      (position) => {
+      (position) => { 
         this.setState({
           latitude: position.coords.latitude,
           longitude: position.coords.longitude,
