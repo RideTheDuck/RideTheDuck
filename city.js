@@ -1,11 +1,9 @@
 import React, { Component, useState } from 'react';
 import { View, StyleSheet, Button, Text, Image, Keyboard, TouchableWithoutFeedback, TextInput } from 'react-native';
 import axios from 'axios';
-import { SvgUri } from 'react-native-svg';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import { Feather } from "@expo/vector-icons";
 import t from 'tcomb-form-native'; // 0.6.9
-import Icon from 'react-native-vector-icons/FontAwesome';
 import Fx from './components/fx'
 import CurrencyFormat from 'react-currency-format';
 import yelp from "./api/yelp"
@@ -135,11 +133,7 @@ export default class City extends Component {
               longitudeDelta: 30,
             }}
           />
-          <SvgUri
-            width="10%"
-            height="10%"
-            uri={`${flag}`}
-          />
+      
           <View style={{ width: 170, padding: 10 }}>
             <Text style={{ fontSize: 15, fontWeight: 'bold' }}>{capital}</Text>
             <Text>{capital}</Text>

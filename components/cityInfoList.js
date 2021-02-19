@@ -2,15 +2,20 @@ import React from 'react';
 import { View, StyleSheet, FlatList, Text } from "react-native"
 import CityInfo from "./cityInfo"
 import useCity from "./hooks/useCity"
-import { SvgUri } from 'react-native-svg';
+import { Flag } from 'react-native-flagkit'
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import Fx from "./fx"
 
 
 const CityInfoList = ({ results }) => {
-  console.log(results.flag)
+  
   return (
     <View style={{}}>
+      <Flag
+            id={`${results.alpha2Code}`}
+            width={100}
+            height={100}
+        />
       <Text>{results.name}</Text>
       <Text>{results.languages[0].name}</Text>
       <Text>{results.timezones[0]}</Text>
@@ -18,14 +23,9 @@ const CityInfoList = ({ results }) => {
       <Text>{results.capital}</Text>
       <Text>{results.latlng[0]}</Text>
       <Text>{results.latlng[1]}</Text>
-      <SvgUri
-        width="200"
-        height="100"
-        resizeMode='cover'
-        uri={`${results.flag}`}
-      />
-      {/* </View>
-    <View style={styles.container}> */}
+      <Text>{results.flag}</Text>
+      
+  
       <MapView
         style={styles.map}
         provider={PROVIDER_GOOGLE}
