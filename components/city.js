@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { View, StyleSheet, Button, Text, Image, Keyboard, TouchableWithoutFeedback, TextInput } from 'react-native';
 import axios from 'axios';
 import { SvgUri } from 'react-native-svg';
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'; 
+
 import { Feather } from "@expo/vector-icons";
 // import t from 'tcomb-form-native'; // 0.6.9
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -40,7 +41,9 @@ export default class City extends Component {
         flag = res.data[0].flag
         newCurrency = res.data[0].currencies[0].code
         language = res.data[0].languages[0].name
-        capital = res.data[0].capital
+        capital = res.data[0].capital 
+        lttd = res.date[0].latitude
+        lng = res.date[1].latitude 
         this.setState({
           searchResults: res.data[0],
           isShowingResults: true,
@@ -99,8 +102,8 @@ export default class City extends Component {
               style={styles.map}
               provider={PROVIDER_GOOGLE}
               initialRegion={{
-                latitude: Number`${lttd}`,
-                longitude: Number`${lng}`,
+                latitude: Number(lttd),
+                longitude: Number(lng),
                 latitudeDelta: 20,
                 longitudeDelta: 30,
               }}
@@ -108,7 +111,7 @@ export default class City extends Component {
           </View>
           <View style={{ flexDirection: 'column', flex: 1, padding: 10 }}>
             <SvgUri
-              style={{ flexDirection: 'column', alignSelf: "left" }}
+              style={{ flexDirection: 'column'}}
               width="50%"
               height="20%"
               uri={`${flag}`}
