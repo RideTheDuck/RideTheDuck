@@ -99,8 +99,8 @@ export default class City extends Component {
               style={styles.map}
               provider={PROVIDER_GOOGLE}
               initialRegion={{
-                latitude: `${lttd}`,
-                longitude: `${lng}`,
+                latitude: Number`${lttd}`,
+                longitude: Number`${lng}`,
                 latitudeDelta: 20,
                 longitudeDelta: 30,
               }}
