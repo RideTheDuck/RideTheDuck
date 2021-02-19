@@ -44,6 +44,8 @@ I need to be able to check the current news stories.
 
 
 ### Wireframe
-
 <img src="https://github.com/xavierloos/RideTheDuck/blob/main/New%20Wireframe%201.png" alt="Wireframe" width="50%">
+
+### Wireframe Version 2
+<img src="https://github.com/RideTheDuck/RideTheDuck/blob/main/Wireframe%20version%202.png" alt="Wireframe" width="50%">
 
