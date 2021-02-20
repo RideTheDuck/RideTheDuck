@@ -16,7 +16,6 @@ export default () => {
         }
       });
       setResultsLandmark(responseLandmark.data.businesses)
-      console.log(responseLandmark.data.businesses)
     } catch (err) {
       setErrorMessageLandmark("Something went wrong");
     }

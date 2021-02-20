@@ -11,7 +11,6 @@ export default class Fx extends Component {
   }
   componentDidUpdate(prevProps) {
     if (prevProps.Dest !== this.props.Dest) {
-      console.log('currency has changed!!')
       this.setState({
         Dest: this.props.Dest
       })

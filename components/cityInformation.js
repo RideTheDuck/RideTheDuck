@@ -9,7 +9,7 @@ const CityInformation = ({ results }) => {
   
   return (
     <View style={{}}>
-      <Flag
+      {/* <Flag
             id={`${results.alpha2Code}`}
             width={100}
             height={100}
@@ -33,7 +33,7 @@ const CityInformation = ({ results }) => {
           longitudeDelta: 30,
         }}
       />
-      <Fx Dest={results.currencies[0].code}/>
+      <Fx Dest={results.currencies[0].code}/> */}
     </View >
   )
 

@@ -4,9 +4,12 @@ import Search from "./search"
 import RestaurantList from "./restaurantList"
 import LandmarksList from "./landmarksList"
 import CityInformation from "./cityInformation"
+import FlightsList from "./flightsList"
 import useRestaurants from "./hooks/useRestaurants"
 import useLandmark from "./hooks/useLandmark"
+import useFlight from "./hooks/useFlight"
 import useCity from"./hooks/useCity"
+import 'react-native-gesture-handler';
 
 const RenderComponents = () => {
 
@@ -14,7 +17,8 @@ const RenderComponents = () => {
   const [searchApi, results, errorMessage] = useRestaurants();
   const [searchApiCity, resultsCity, errorMessageCity] = useCity();
   const [searchApiLandmark, resultsLandmark, errorMessageLandmark] = useLandmark();
-  console.log(results)
+  const [searchDestinationCityCode, resultsFlight, errorMessageFlight] = useFlight();
+  // console.log(results)
   const filterByRating = (rate) => {
     return results.filter(result => {
       return result.rating >= rate
@@ -28,7 +32,10 @@ const RenderComponents = () => {
 
   return (
     <ScrollView>
-      <Search location={location} onLocationChange={setLocation} onLocationSubmit={() => { searchApi(location); searchApiCity(location); searchApiLandmark(location)}} />
+      <Search location={location} onLocationChange={setLocation} onLocationSubmit={() => { searchApi(location); searchApiCity(location); searchApiLandmark(location); searchDestinationCityCode(location)}} />
+
+      {errorMessage ? <Text>{resultsFlight.length} Flights found</Text> : null}
+      <FlightsList results={resultsFlight} title="Best Flights" />
       
       {errorMessage ? <Text>{results.length} Restaurants found</Text> : null}
       <RestaurantList results={filterByRating(4)} title="Best Restaurants" />

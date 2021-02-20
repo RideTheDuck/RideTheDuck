@@ -73,7 +73,6 @@ export default class City extends Component {
       }
     });
     setResults(response.data.businesses)
-    console.log(setResults)
   };
 
   render() {

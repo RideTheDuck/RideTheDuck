@@ -10,7 +10,6 @@ export default () => {
     try {
       const responseCity = await city.get(`/${searchLocation}`);
       setResultsCity(responseCity.data[0])
-      console.log(setResultsCity)
     } catch (err) {
       setErrorMessageCity("Something went wrong");
     }
