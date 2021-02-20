@@ -10,7 +10,7 @@ export default class Flights extends Component {
     this.state = {
       keyword: '',
       cityFromCode: 'LON',
-      cityToCode: 'MEX',
+      cityToCode: 'SEL',
       cityFrom: '',
       countryFrom: '',
       cityTo: '',
