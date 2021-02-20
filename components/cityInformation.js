@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, StyleSheet, FlatList, Text } from "react-native"
-import { Flag } from 'react-native-flagkit'
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
-import Fx from "./fx"
+// import { Flag } from 'react-native-flagkit'
+// import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+// import Fx from "./fx"
 
 
 const CityInformation = ({ results }) => {
