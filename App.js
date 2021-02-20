@@ -1,5 +1,8 @@
-import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react'; 
+import 'react-native-gesture-handler';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import Flights from './components/flights'
 import {
   View,
   Text,
@@ -16,55 +19,38 @@ import {
   Keyboard
   
 } from 'react-native';
-import { Header } from 'react-native-elements';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import Flights from './components/flights'
 
-// import Geolocation from './components/geolocation'
-import City from './components/city'
-import axios from 'axios';
-export default function App() {
+
+function HomeScreen({ navigation }) {
   return (
-    <SafeAreaProvider style={{backgroundColor:'lightblue'}}>
-      <Header
-        leftComponent={{ icon: 'menu', color: '#fff' }}
-        centerComponent={{ text: 'Ride the Duck 🦆', style: { color: '#fff', fontWeight:'bold' } }}
-        rightComponent={{ icon: 'home', color: '#fff' }}
-      />
-      <Flights />
-      {/* <City /> */}
-      {/* <View style={styles.containerStyle}>
-        <Text style={{ padding:10, fontSize: 12, fontWeight:'bold'}}>Top 10 places to visit</Text>
-      </View> */}
-      {/* <View style={styles.containerStyle} >
-        <Text style={{ padding:10, fontSize: 12, fontWeight:'bold' }}>Top 10 places to eat</Text>
-      </View> */}
-      
-    </SafeAreaProvider>
-  )
+    <View style={{flex: 1, alignItems: 'center', justifyContent:'center' }}>
+      <Text style={{fontSize: 30}}>Home Screen</Text>
+      <Button 
+        title = "Check Flights"
+        onPress={()=> navigation.navigate('Flights', {
+          cityFrom: 'London',
+          cityTo: 'Seoul'
+        })}
+        />
+    </View>
+  );
 }
 
 
-const styles = StyleSheet.create({
-  containerStyle: {
-    flex: 1,
-    // shadowOffset:{  width: 10,  height: 10,  },
-    // shadowColor: 'grey',
-    // shadowOpacity: 1.0,
-    // borderWidth: 1,
-    marginBottom: 10,
-    marginRight: 15,
-    marginLeft: 15,
-    backgroundColor: '#fff',
-    borderRadius:10
-    // shadowOffset:{  width: 10,  height: 10,  },
-    //   shadowColor: 'grey',
-    //   shadowOpacity: 0.5,
-    //   borderWidth: 1,
-    //   marginTop: 20,
-    //   marginLeft: 20,
-    //   marginRight: 20,
-    //   borderRadius:10,
-  },
+const Stack = createStackNavigator();
 
-});
+export default function App() {
+  return (
+    <>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Flights" component={Flights} 
+        options={({route}) => ({title: '✈️  ' + route.params.cityFrom + ' to ' + route.params.cityTo})} />
+      </Stack.Navigator>
+      </NavigationContainer>
+   
+   </>
+    
+  )
+}
