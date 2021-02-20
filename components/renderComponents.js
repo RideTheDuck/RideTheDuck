@@ -10,8 +10,10 @@ import useLandmark from "./hooks/useLandmark"
 import useFlight from "./hooks/useFlight"
 import useCity from"./hooks/useCity"
 import 'react-native-gesture-handler';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-const RenderComponents = () => {
+const RenderComponents = ({navigation}) => {
 
   const [location, setLocation] = useState('')
   const [searchApi, results, errorMessage] = useRestaurants();

@@ -12,8 +12,8 @@ export default () => {
   const [errorMessageCityCode, setErrorMessageCityCode] = useState([])
   const dateFrom = moment(new Date()).format('DD/MM/YYYY')
   const dateTo = moment().add(3, 'months').format('DD/MM/YYYY')
+  
   const searchDestinationCityCode = async searchLocation => {
-    console.log(searchLocation)
     try {
       const responseDestinationCityCode = await flight.get("/locations?", {
         params: {
@@ -25,9 +25,8 @@ export default () => {
           active_only:'true',
         }
       });
-      console.log(responseDestinationCityCode.data.locations[0].city.code)
+      console.log('searchign name')
       setResultsDestinationCityCode(responseDestinationCityCode.data.locations[0].city.code)
-      console.log(setResultsDestinationCityCode)
       searchApiFlight(resultsDestinationCityCode);
     } catch (err) {
       setErrorMessageCityCode("Could not find destination city code");
@@ -35,10 +34,12 @@ export default () => {
   };
 
   const searchApiFlight = async resultsDestinationCityCode => {
+    console.log('searching flights...')
+    console.log(resultsDestinationCityCode)
     try {
       const responseFlight = await flight.get(`/flights?dateFrom=${dateFrom}&dateTo=${dateTo}`, {
         params: {
-          fly_from: 'LON',
+          fly_from: 'PAR',
           fly_to: resultsDestinationCityCode,
           limit: 10,
           sort: 'duration',
@@ -47,7 +48,6 @@ export default () => {
         }
       });
       let flightsArray = []
-      console.log(responseFlight)
       let data = responseFlight.data.data
         for (let i = 0; i < data.length; i++) {
           flightsArray.push({
@@ -63,7 +63,6 @@ export default () => {
           })
         }
       setResultsFlight(flightsArray)
-      console.log(flightsArray)
     } catch (err) {
       setErrorMessageFlight("Something went wrong");
     }
@@ -71,7 +70,8 @@ export default () => {
   //Sets a default search value
   
   useEffect(() => {
-    searchDestinationCityCode('London')
+    searchApiFlight('LON')
   }, [])
+
   return [searchApiFlight,resultsFlight,errorMessageFlight, errorMessageCityCode]
 }

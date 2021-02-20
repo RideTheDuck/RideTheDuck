@@ -1,17 +1,16 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, FlatList } from "react-native"
+import { View, Text, Image, StyleSheet, FlatList, Linking } from "react-native"
 
 const FlightInfo = ({ result }) => {
   return (
     <View>
-      <Text>{result.name}</Text>
-      <Text>{result.rating}</Text>
+      <Text>✈️</Text>
       <Text>From: {result.cityFrom}, {result.countryFrom}</Text>
-          <Text>To: {result.cityTo}, {result.countryTo}</Text>
-          <Text>Date: {result.flightDate}</Text>
-          <Text>Duration: {result.flightDuration}</Text>
-          <Text>{result.currency}{result.price}</Text>
-          <Text style={{color: 'blue'}} onPress={()=> Linking.openURL(`${result.link}`)}>Check out the flight</Text>
+      <Text>To: {result.cityTo}, {result.countryTo}</Text>
+      <Text>Date: {result.flightDate}</Text>
+      <Text>Duration: {result.flightDuration}</Text>
+      <Text>{result.currency} {result.price}</Text>
+      <Text style={{color: 'blue'}} onPress={()=> Linking.openURL(`${result.link}`)}>Check out the flight</Text>
     </View>
   )
 
