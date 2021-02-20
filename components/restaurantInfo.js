@@ -3,7 +3,7 @@ import { View, Text,Image, StyleSheet, FlatList } from "react-native"
 
 const RestaurantInfo = ({ result }) => {
   return (
-    <View>
+    <View style={{marginLeft:10}}>
       <Image style={styles.image} source={{uri:result.image_url}}/>
       <Text>{result.name}</Text>
       <Text>{result.rating}</Text>

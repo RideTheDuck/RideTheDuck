@@ -3,9 +3,11 @@ import { View, Text, Stylesheet, ScrollView} from 'react-native';
 import Search from "./search"
 import RestaurantList from "./restaurantList"
 import LandmarksList from "./landmarksList"
+import HotelList from "./hotelList"
 import CityInformation from "./cityInformation"
 import useRestaurants from "./hooks/useRestaurants"
 import useLandmark from "./hooks/useLandmark"
+import useHotel from "./hooks/useHotel"
 import useCity from"./hooks/useCity"
 
 const RenderComponents = () => {
@@ -14,33 +16,40 @@ const RenderComponents = () => {
   const [searchApi, results, errorMessage] = useRestaurants();
   const [searchApiCity, resultsCity, errorMessageCity] = useCity();
   const [searchApiLandmark, resultsLandmark, errorMessageLandmark] = useLandmark();
-  console.log(results)
+  const [searchApiHotel, resultsHotel, errorMessageHotel] = useHotel();
+
   const filterByRating = (rate) => {
     return results.filter(result => {
       return result.rating >= rate
     })
   }
+
   const filterByRatingLandmark = (rate) => {
     return resultsLandmark.filter(result => {
       return result.rating >= rate
     })
   }
 
-  return (
-    <ScrollView>
-      <Search location={location} onLocationChange={setLocation} onLocationSubmit={() => { searchApi(location); searchApiCity(location); searchApiLandmark(location)}} />
-      
-      {errorMessage ? <Text>{results.length} Restaurants found</Text> : null}
-      <RestaurantList results={filterByRating(4)} title="Best Restaurants" />
-      
-      <CityInformation results={resultsCity} title="About" />
-      {errorMessageCity ? <Text>{resultsCity.length} City found</Text> : null}
+  const filterByRatingHotel = (rate) => {
+    return resultsHotel.filter(result => {
+      return result.rating >= rate
+    })
+  }
 
-      {errorMessageLandmark ? <Text>{resultsLandmark.length} Landmarks found</Text> : null}
-      <LandmarksList results={filterByRatingLandmark(4)} title="Best Places" />
-      
-    </ScrollView>
+  return (
+    <>
+    <Search location={location} onLocationChange={setLocation} onLocationSubmit={() => { searchApi(location); searchApiCity(location); searchApiLandmark(location) }} />
     
+    <ScrollView>
+      {errorMessage ? <RestaurantList results={filterByRating(4.5)} title="Best Restaurants" /> : null}
+      
+      {errorMessageCity ? <CityInformation results={resultsCity} title="About" /> : null}
+
+      {errorMessageLandmark ? <LandmarksList results={filterByRatingLandmark(4.5)} title="Best Places" /> : null}
+
+      {errorMessageHotel ? <HotelList results={filterByRatingHotel(4.5)} title="Best Hotels" /> : null}
+    </ScrollView>
+   </> 
   );
   
 }

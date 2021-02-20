@@ -6,14 +6,14 @@ import Fx from "./fx"
 
 
 const CityInformation = ({ results }) => {
-  
+
   return (
     <View style={{}}>
-      <Flag
-            id={`${results.alpha2Code}`}
-            width={100}
-            height={100}
-        />
+      {/* <Flag
+        id={`${results.alpha2Code}`}
+        width={100}
+        height={100}
+      />
       <Text>{results.name}</Text>
       <Text>{results.languages[0].name}</Text>
       <Text>{results.timezones[0]}</Text>
@@ -33,7 +33,7 @@ const CityInformation = ({ results }) => {
           longitudeDelta: 30,
         }}
       />
-      <Fx Dest={results.currencies[0].code}/>
+      <Fx Dest={results.currencies[0].code} /> */}
     </View >
   )
 
