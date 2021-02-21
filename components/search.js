@@ -1,31 +1,29 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { View, TextInput, StyleSheet } from "react-native"
-import { Feather } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons"; 
+import Icon from 'react-native-vector-icons/FontAwesome';
+
+const search = require('../style/search');
 
 const Search = ({ location, onLocationChange, onLocationSubmit }) => {
+  state = {text:""}
   return (
-    <View style={{ flexDirection: 'row', alignItems: 'center', height: 40, borderColor: 'gray', borderWidth: 1, paddingLeft: 10, borderRadius: 5, margin: 10 }}>
-      <Feather name='search' style={styles.iconStyle} />
+    <View style={search.container}>
+     <Icon name="search" style={search.icon} />
       <TextInput
-        style={{ fontSize: 18 }}
-        onChangeText={text => { this.setState({ keyword: text }) }}
-        returnKeyType="go"
+        style={search.input}
+        // autoCorrect={true}
+        // onChangeText={text => { this.setState({ keyword: text }) }}
+        // returnKeyType="go"
         placeholder="Search for destination"
         // onSubmitEditing={() => this.handleSubmit()}
+        autoFocus={true}
         value={location}
-        onChangeText={onLocationChange}
+        onChangeText={text => this.setState({text}),onLocationChange}
         onEndEditing={onLocationSubmit}
       />
     </View>
   );
 }
-const styles = StyleSheet.create({
-  iconStyle: {
-    fontSize: 20,
-    color: "gray",
-    alignSelf: "center",
-    marginRight: 10
-  }
-});
 
 export default Search;

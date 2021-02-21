@@ -9,10 +9,10 @@ const LandmarkInfo = ({ result }) => {
     let phoneNumber = result.phone
     if (Platform.OS !== "android") {
       phoneNumber = `telprompt:${phoneNumber}`;
-      console.log("Calling in iphone")
+      console.log(`Calling ${phoneNumber}`)
     } else {
       phoneNumber = `tel:${phoneNumber}`;
-      console.log("Calling in android")
+      console.log(`Calling ${phoneNumber}`)
     }
     Linking.canOpenURL(phoneNumber)
   };
@@ -35,12 +35,12 @@ const LandmarkInfo = ({ result }) => {
         </View>
         <View style={styles.moreInfo}>
           <View style={{display:"flex", flexDirection:"row"}}>
-            <TouchableOpacity style={styles.infoButton} onPress={() => Linking.openURL(`${result.url}`)}>
+            <TouchableOpacity style={styles.infoButton} onPress={() => Linking.openURL(`https://m.yelp.co.uk/biz/${result.alias}`)}>
               <Text style={styles.infoTextButton}>More Info...</Text>
               </TouchableOpacity>
           </View>
           <View style={{ display: "flex", flexDirection: "row", flex:1 }}>
-            <TouchableOpacity style={styles.directionButton} onPress={() => Linking.openURL(`https://www.yelp.com/map/${result.alias}`)}>
+            <TouchableOpacity style={styles.directionButton} onPress={() => Linking.openURL(`https://m.yelp.co.uk/biz/${result.alias}#directions`)}>
               <Text style={styles.direction}>Directions</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.phoneButton} onPress={() => call()}>

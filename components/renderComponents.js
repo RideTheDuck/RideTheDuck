@@ -4,7 +4,8 @@ import Search from "./search"
 import RestaurantList from "./restaurantList"
 import LandmarksList from "./landmarksList"
 import HotelList from "./hotelList"
-import CityInformation from "./cityInformation"
+import CityList from "./cityList"
+// import CityInformation from "./cityInformation"
 import useRestaurants from "./hooks/useRestaurants"
 import useLandmark from "./hooks/useLandmark"
 import useHotel from "./hooks/useHotel"
@@ -17,7 +18,6 @@ const RenderComponents = () => {
   const [searchApiCity, resultsCity, errorMessageCity] = useCity();
   const [searchApiLandmark, resultsLandmark, errorMessageLandmark] = useLandmark();
   const [searchApiHotel, resultsHotel, errorMessageHotel] = useHotel();
-
   const filterByRating = (rate) => {
     return results.filter(result => {
       return result.rating >= rate
@@ -40,14 +40,14 @@ const RenderComponents = () => {
     <>
     <Search location={location} onLocationChange={setLocation} onLocationSubmit={() => { searchApi(location); searchApiCity(location); searchApiLandmark(location) }} />
     
-    <ScrollView>
-      {errorMessage ? <RestaurantList results={filterByRating(4.5)} title="Best Restaurants" /> : null}
-      
-      {errorMessageCity ? <CityInformation results={resultsCity} title="About" /> : null}
+      <ScrollView>
+        {errorMessageCity ? <CityList results={resultsCity} /> : null}
+        
+        {errorMessage ? <RestaurantList results={filterByRating(4.5)} title="Best Restaurants" /> : null}
+        
+        {errorMessageLandmark ? <LandmarksList results={filterByRatingLandmark(4.5)} title="Best Places" /> : null}
 
-      {errorMessageLandmark ? <LandmarksList results={filterByRatingLandmark(4.5)} title="Best Places" /> : null}
-
-      {errorMessageHotel ? <HotelList results={filterByRatingHotel(4.5)} title="Best Hotels" /> : null}
+        {errorMessageHotel ? <HotelList results={filterByRatingHotel(4.5)} title="Best Hotels" /> : null}
     </ScrollView>
    </> 
   );

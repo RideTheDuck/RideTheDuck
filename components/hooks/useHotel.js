@@ -16,7 +16,6 @@ export default () => {
         }
       });
       setResultsHotel(responseHotel.data.businesses)
-      console.log(responseHotel.data.businesses)
     } catch (err) {
       setErrorMessageHotel("Something went wrong");
     }
