@@ -1,0 +1,25 @@
+<Flag
+            id={`${results.alpha2Code}`}
+            width={100}
+            height={100}
+        />
+      <Text>{results.name}</Text>
+      <Text>{results.languages[0].name}</Text>
+      <Text>{results.timezones[0]}</Text>
+      <Text>{results.currencies[0].code}</Text>
+      <Text>{results.capital}</Text>
+      <Text>{results.latlng[0]}</Text>
+      <Text>{results.latlng[1]}</Text>
+
+      <MapView
+        style={styles.map}
+        provider={PROVIDER_GOOGLE}
+        initialRegion={{
+          latitude: results.latlng[0],
+          longitude: results.latlng[1],
+          latitudeDelta: 20,
+          longitudeDelta: 30,
+        }}
+      />
+      <Fx Dest={results.currencies[0].code}/>
+      <Weather cityName={results.capital}/>

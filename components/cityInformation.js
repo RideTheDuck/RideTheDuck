@@ -3,6 +3,7 @@ import { View, StyleSheet, FlatList, Text } from "react-native"
 import { Flag } from 'react-native-flagkit'
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import Fx from "./fx"
+import Weather from "./weather"
 
 
 const CityInformation = ({ results }) => {
@@ -21,7 +22,6 @@ const CityInformation = ({ results }) => {
       <Text>{results.capital}</Text>
       <Text>{results.latlng[0]}</Text>
       <Text>{results.latlng[1]}</Text>
-      <Text>{results.flag}</Text>
 
       <MapView
         style={styles.map}
@@ -34,6 +34,7 @@ const CityInformation = ({ results }) => {
         }}
       />
       <Fx Dest={results.currencies[0].code}/>
+      <Weather cityName={results.capital}/>
     </View >
   )
 

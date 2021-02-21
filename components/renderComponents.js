@@ -7,6 +7,7 @@ import CityInformation from "./cityInformation"
 import useRestaurants from "./hooks/useRestaurants"
 import useLandmark from "./hooks/useLandmark"
 import useCity from"./hooks/useCity"
+import CityWeather from "./weather"
 
 const RenderComponents = () => {
 
@@ -14,6 +15,7 @@ const RenderComponents = () => {
   const [searchApi, results, errorMessage] = useRestaurants();
   const [searchApiCity, resultsCity, errorMessageCity] = useCity();
   const [searchApiLandmark, resultsLandmark, errorMessageLandmark] = useLandmark();
+
   console.log(results)
   const filterByRating = (rate) => {
     return results.filter(result => {
