@@ -43,11 +43,11 @@ const RenderComponents = () => {
       <ScrollView>
         {errorMessageCity ? <CityList results={resultsCity} /> : null}
         
-        {errorMessage ? <RestaurantList results={filterByRating(4.5)} title="Best Restaurants" /> : null}
+        {errorMessage ? <RestaurantList results={filterByRating(4.5)} title="Restaurants" /> : null}
         
-        {errorMessageLandmark ? <LandmarksList results={filterByRatingLandmark(4.5)} title="Best Places" /> : null}
+        {errorMessageLandmark ? <LandmarksList results={filterByRatingLandmark(4.5)} title="Landmarks" /> : null}
 
-        {errorMessageHotel ? <HotelList results={filterByRatingHotel(4.5)} title="Best Hotels" /> : null}
+        {errorMessageHotel ? <HotelList results={filterByRatingHotel(4.5)} title="Hotels" /> : null}
     </ScrollView>
    </> 
   );

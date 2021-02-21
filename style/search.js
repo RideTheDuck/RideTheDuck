@@ -5,9 +5,11 @@ import {
 
 const search = StyleSheet.create({
     container: {
-        flexDirection: 'row', alignItems: 'center',
+        flexDirection: 'row',
+        alignItems: 'center',
         height: 40,
-        borderColor: 'gray', borderWidth: 1,
+        borderColor: 'gray',
+        borderWidth: 2,
         paddingLeft: 10,
         borderRadius: 100,
         margin: 10,
