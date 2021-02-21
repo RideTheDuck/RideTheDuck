@@ -19,7 +19,7 @@ const RenderComponents = ({navigation}) => {
   const [searchApi, results, errorMessage] = useRestaurants();
   const [searchApiCity, resultsCity, errorMessageCity] = useCity();
   const [searchApiLandmark, resultsLandmark, errorMessageLandmark] = useLandmark();
-  const [searchDestinationCityCode, resultsFlight, errorMessageFlight] = useFlight();
+  const [searchApiFlight, resultsFlight, errorMessageFlight] = useFlight();
   // console.log(results)
   const filterByRating = (rate) => {
     return results.filter(result => {
@@ -34,7 +34,7 @@ const RenderComponents = ({navigation}) => {
 
   return (
     <ScrollView>
-      <Search location={location} onLocationChange={setLocation} onLocationSubmit={() => { searchApi(location); searchApiCity(location); searchApiLandmark(location); searchDestinationCityCode(location)}} />
+      <Search location={location} onLocationChange={setLocation} onLocationSubmit={() => { searchApi(location); searchApiCity(location); searchApiLandmark(location); searchApiFlight(location)}} />
 
       {errorMessage ? <Text>{resultsFlight.length} Flights found</Text> : null}
       <FlightsList results={resultsFlight} title="Best Flights" />
