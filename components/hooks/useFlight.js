@@ -17,7 +17,7 @@ export default () => {
         const responseDestinationCityCode = await flight.get("/locations?", {
           params: {
             term: searchLocation,
-            locale: 'en-US',
+            locale: 'uk',
             location_types: 'airport',
             limit: 10,
             sort:'name',
@@ -25,7 +25,6 @@ export default () => {
           }
         });
         setResultsDestinationCityCode(responseDestinationCityCode.data.locations[0].city.code)
- 
       const responseFlight = await flight.get(`/flights?dateFrom=${dateFrom}&dateTo=${dateTo}`, {
         params: {
           fly_from: 'LON',

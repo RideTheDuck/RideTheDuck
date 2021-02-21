@@ -1,5 +1,5 @@
 import React, { useState} from 'react';
-import { View, Text, Stylesheet, ScrollView} from 'react-native';
+import { View, Text, Stylesheet, ScrollView, Button} from 'react-native';
 import Search from "./search"
 import RestaurantList from "./restaurantList"
 import LandmarksList from "./landmarksList"
@@ -13,7 +13,8 @@ import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-const RenderComponents = ({navigation}) => {
+
+const RenderComponent = ({navigation}) => {
 
   const [location, setLocation] = useState('')
   const [searchApi, results, errorMessage] = useRestaurants();
@@ -35,9 +36,6 @@ const RenderComponents = ({navigation}) => {
   return (
     <ScrollView>
       <Search location={location} onLocationChange={setLocation} onLocationSubmit={() => { searchApi(location); searchApiCity(location); searchApiLandmark(location); searchApiFlight(location)}} />
-
-      {errorMessage ? <Text>{resultsFlight.length} Flights found</Text> : null}
-      <FlightsList results={resultsFlight} title="Best Flights" />
       
       {errorMessage ? <Text>{results.length} Restaurants found</Text> : null}
       <RestaurantList results={filterByRating(4)} title="Best Restaurants" />
@@ -47,10 +45,30 @@ const RenderComponents = ({navigation}) => {
 
       {errorMessageLandmark ? <Text>{resultsLandmark.length} Landmarks found</Text> : null}
       <LandmarksList results={filterByRatingLandmark(4)} title="Best Places" />
+
+      {errorMessage ? <Text>{resultsFlight.length} Flights found</Text> : null}
+      {/* <FlightsList results={resultsFlight} title="Best Flights" /> */}
+      <Button 
+        title='Check Flights' onPress={()=> {
+          navigation.navigate('Flights', {
+            results: resultsFlight
+          })
+        }} />
       
     </ScrollView>
     
   );
-  
 }
-export default RenderComponents;
+
+const Stack =  createStackNavigator();
+
+export default function StackView() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Screen name="Home" component={RenderComponent}/>
+        <Stack.Screen name="Flights" component={FlightsList}/>
+      </Stack.Navigator>
+    </NavigationContainer>
+  )
+}
