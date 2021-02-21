@@ -5,12 +5,12 @@ const FlightInfo = ({ result }) => {
   return (
     <View style={styles.card}>
       <View style={styles.container}>
-        <Text>✈️</Text>
-        <Text>From: {result.cityFrom}, {result.countryFrom}</Text>
-        <Text>To: {result.cityTo}, {result.countryTo}</Text>
-        <Text>Date: {result.flightDate}</Text>
-        <Text>Duration: {result.flightDuration}</Text>
-        <Text>{result.currency} {result.price}</Text>
+        <Text style={{marginBottom: 5}}>✈️</Text>
+        <Text style={{marginBottom: 5}}>From: {result.cityFrom}, {result.countryFrom}</Text>
+        <Text style={{marginBottom: 5}}>To: {result.cityTo}, {result.countryTo}</Text>
+        <Text style={{marginBottom: 5}}>Date: {result.flightDate}</Text>
+        <Text style={{marginBottom: 5}}>Duration: {result.flightDuration}</Text>
+        <Text style={{marginBottom: 5}}>{result.currency} {result.price}</Text>
         <Text style={{ color: 'blue' }} onPress={() => Linking.openURL(`${result.link}`)}>Check out the flight</Text>
       </View>
     </View>
@@ -29,12 +29,11 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-
     elevation: 5,
   },
   container: {
     padding: 20,
-    backgroundColor:'#fff'
+    backgroundColor:'#fff',
   }
 })
 

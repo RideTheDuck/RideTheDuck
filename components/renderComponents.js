@@ -8,14 +8,17 @@ import FlightsList from "./flightsList"
 import useRestaurants from "./hooks/useRestaurants"
 import useLandmark from "./hooks/useLandmark"
 import useFlight from "./hooks/useFlight"
-import useCity from"./hooks/useCity"
+import useCity from "./hooks/useCity"
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import UserLocation from './geolocation'
+
 
 
 const RenderComponent = ({navigation}) => {
 
+  
   const [location, setLocation] = useState('')
   const [searchApi, results, errorMessage] = useRestaurants();
   const [searchApiCity, resultsCity, errorMessageCity] = useCity();
@@ -35,7 +38,9 @@ const RenderComponent = ({navigation}) => {
 
   return (
     <ScrollView>
+
       <Search location={location} onLocationChange={setLocation} onLocationSubmit={() => { searchApi(location); searchApiCity(location); searchApiLandmark(location); searchApiFlight(location)}} />
+      <UserLocation/>
       
       {errorMessage ? <Text>{results.length} Restaurants found</Text> : null}
       <RestaurantList results={filterByRating(4)} title="Best Restaurants" />
