@@ -24,8 +24,8 @@ export default class Fx extends Component {
     return (
       <View>
         <View style={{ alignItems: 'flex-start' }}>
-          <TextInput placeholder='£££' onChangeText={this.number_two} style={{  width: 100 }} />
-          <Text>1  {this.state.Home}</Text>
+          <TextInput placeholder='1 USD' onChangeText={this.number_two} style={{  width: 100 }} />
+          {/* <Text>1  {this.state.Home}</Text> */}
           <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
             <CurrencyConverter from={this.state.Home} to={this.state.Dest} value={this.state.Value} />
             <Text>  {this.state.Dest}</Text>

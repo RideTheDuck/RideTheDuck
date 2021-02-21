@@ -12,11 +12,7 @@ const Search = ({ location, onLocationChange, onLocationSubmit }) => {
      <Icon name="search" style={search.icon} />
       <TextInput
         style={search.input}
-        // autoCorrect={true}
-        // onChangeText={text => { this.setState({ keyword: text }) }}
-        // returnKeyType="go"
         placeholder="Search for destination"
-        // onSubmitEditing={() => this.handleSubmit()}
         autoFocus={true}
         value={location}
         onChangeText={text => this.setState({text}),onLocationChange}

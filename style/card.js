@@ -49,7 +49,6 @@ const styles = StyleSheet.create({
         fontSize: 15,
         marginHorizontal: 10,
         marginVertical: 5,
-
     },
     info: {
         position: "relative",
