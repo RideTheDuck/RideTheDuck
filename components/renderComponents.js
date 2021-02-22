@@ -1,5 +1,5 @@
 import React, { useState} from 'react';
-import { ScrollView, Button} from 'react-native';
+import { ScrollView, Button, TouchableOpacity, Text, View} from 'react-native';
 import Search from "./search"
 import RestaurantList from "./restaurantList"
 import LandmarksList from "./landmarksList"
@@ -14,6 +14,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import HotelList from "./hotelList"
 import CityList from "./cityList"
 import useHotel from "./hooks/useHotel"
+const styles = require('../style/card');
 
 const RenderComponent = ({navigation}) => {
   const [location, setLocation] = useState('')
@@ -54,12 +55,12 @@ const RenderComponent = ({navigation}) => {
 
         {errorMessageHotel ? <HotelList results={filterByRatingHotel(4.5)} title="Hotels" /> : null}
   
-        <Button 
-          title='Check Flights' onPress={()=> {
-            navigation.navigate('Flights', {
-              results: resultsFlight
-            })
-          }} />
+      <View style={{marginBottom: 80, marginTop: 10, marginLeft: 20, marginRight: 20}}>
+      <Text style={{fontSize: 30, fontWeight: 'bold', color: 'grey', marginBottom: 20}}>Flights</Text>
+        <TouchableOpacity style={styles.directionButton} onPress={()=> { navigation.navigate('Flights', { results: resultsFlight }) }}>
+          <Text style={styles.direction}>Check Flights</Text>
+        </TouchableOpacity>
+      </View>
       </ScrollView>
     </> 
   );
