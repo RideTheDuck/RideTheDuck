@@ -27,9 +27,6 @@ export default class Weather extends React.Component {
     const apiKey = 'bda085d769a5bc16c98a5824b1d0b2ca'
     axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`)
       .then(res => {
-        // console.log(res.data.main.temp)
-        // console.log(res.data.weather[0].main)
-        // console.log(res.data.weather[0].icon)
         this.setState( {
           temp: res.data.main.temp,
           weather: res.data.weather[0].main,

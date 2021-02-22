@@ -13,6 +13,7 @@
     "css-loader": "^3.4.2",
     "expo": "^40.0.1",
     "expo-status-bar": "~1.0.3",
+    "google-maps-react": "^2.0.6",
     "moment": "^2.29.1",
     "react": "16.13.1",
     "react-currency-conv": "^1.1.0",

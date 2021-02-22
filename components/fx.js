@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput } from 'react-native';
+import { View, Text, TextInput, StyleSheet } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 export default class Fx extends Component {
   constructor(props) {
     super(props)
     this.state = {
       Home: 'USD',
-      Dest: 'USD',
+      Dest:"GBP",
       Value: 1
     }
   }
   componentDidUpdate(prevProps) {
     if (prevProps.Dest !== this.props.Dest) {
-      console.log('currency has changed!!')
       this.setState({
         Dest: this.props.Dest
       })
@@ -23,14 +24,17 @@ export default class Fx extends Component {
   }
   render() {
     return (
-      <View>
-        <View style={{ alignItems: 'flex-start' }}>
-          <TextInput placeholder='£££' onChangeText={this.number_two} style={{  width: 100 }} />
-          <Text>1  {this.state.Home}</Text>
-          <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-            <CurrencyConverter from={this.state.Home} to={this.state.Dest} value={this.state.Value} />
-            <Text>  {this.state.Dest}</Text>
-          </View>
+      <View style={currency.container}>
+        <View style={currency.default}>
+          <Icon name="dollar" style={currency.icon} />
+          <TextInput placeholder='1 USD' onChangeText={this.number_two} style={{ width: 100 }} />
+        </View>
+        <Icon name="exchange" style={currency.iconExchange} />
+        <View style={currency.exchange}>
+          {/* <Text>1  {this.state.Home}</Text> */}
+          <Icon name="dollar" style={currency.icon} />
+          <CurrencyConverter from={this.state.Home} to={this.state.Dest} value={this.state.Value} style={currency.money}/>
+            <Text  style={currency.symbol}> {this.state.Dest}</Text>
         </View>
       </View>
     )
@@ -107,3 +111,56 @@ class CurrencyConverter extends React.Component {
     return <Text>{this.state.convertedValue}</Text>
   }
 }
+const currency = StyleSheet.create({
+  container: {
+    display: "flex",
+    flexDirection: "row",
+    marginVertical:10
+  },
+  default: {
+    display: "flex",
+    flexDirection: "row",
+    flex: 1,
+    height: 30,
+    borderColor: 'gray',
+    borderWidth: 2,
+    paddingHorizontal: 10,
+    borderRadius: 100,
+    backgroundColor: "white",
+    borderColor: "#faab18",
+  },
+  icon: {
+    fontSize: 18,
+    color: "#faab18",
+    alignSelf: "center",
+    marginRight: 10
+  },
+  iconExchange: {
+    fontSize: 30,
+    color: "#faab18",
+    alignSelf: "center",
+    marginHorizontal: 10
+  },
+  exchange: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems:"center",
+    flex:1,
+    height: 30,
+    borderColor: 'gray',
+    borderWidth: 2,
+    paddingHorizontal: 10,
+    borderRadius: 100,
+    backgroundColor: "white",
+    borderColor: "#faab18",
+  },
+  money: {
+    fontSize: 15,
+    color: "#546747"
+  },
+  symbol: {
+    fontSize: 15,
+    color: "#546747",
+    fontWeight:"bold"
+  }
+})

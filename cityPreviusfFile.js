@@ -64,17 +64,6 @@ export default class City extends Component {
     
     
   }
-  searchApi = async () => {
-    const response = await yelp.get("/search", {
-      params: {
-        limit: 10,
-        term,
-        location:"london"
-      }
-    });
-    setResults(response.data.businesses)
-    console.log(setResults)
-  };
 
   render() {
     
