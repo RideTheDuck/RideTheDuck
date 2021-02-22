@@ -1,20 +1,18 @@
 import React from 'react';
-import { View, StyleSheet, FlatList, Text } from "react-native"
+import { View, Text } from "react-native"
 import { Flag } from 'react-native-flagkit'
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import Fx from "./fx"
+import Weather from "./weather"
 import Icon from 'react-native-vector-icons/FontAwesome';
 const city = require('../style/city');
+
 
 const CityInformation = ({ result }) => {
   return (
     <View style={city.container}>
       <View style={city.title}>
-        <Flag
-          id={`${result.alpha2Code}`}
-          width={30}
-          height={20}
-        />
+        <Flag id={`${result.alpha2Code}`} width={30} height={20} />
         <Text style={city.capital}>{result.capital}</Text>
         <Text style={city.nativeName}>{result.nativeName}</Text>
       </View> 
@@ -48,9 +46,7 @@ const CityInformation = ({ result }) => {
                 }}
               />
         <View style={city.weather}>
-          <Text>
-            Weather goes here
-          </Text>
+           <Weather cityName={results.capital}/>
         </View>
       </View>
       <View>

@@ -1,5 +1,5 @@
 import React, { useState} from 'react';
-import { Text,  ScrollView, Button} from 'react-native';
+import { ScrollView, Button} from 'react-native';
 import Search from "./search"
 import RestaurantList from "./restaurantList"
 import LandmarksList from "./landmarksList"
@@ -13,21 +13,16 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import HotelList from "./hotelList"
 import CityList from "./cityList"
-import useRestaurants from "./hooks/useRestaurants"
-import useLandmark from "./hooks/useLandmark"
 import useHotel from "./hooks/useHotel"
 
-
-
 const RenderComponent = ({navigation}) => {
-
-  
   const [location, setLocation] = useState('')
   const [searchApi, results, errorMessage] = useRestaurants();
   const [searchApiCity, resultsCity, errorMessageCity] = useCity();
   const [searchApiLandmark, resultsLandmark, errorMessageLandmark] = useLandmark();
   const [searchApiFlight, resultsFlight, errorMessageFlight] = useFlight();
   const [searchApiHotel, resultsHotel, errorMessageHotel] = useHotel();
+
   const filterByRating = (rate) => {
     return results.filter(result => {
       return result.rating >= rate
