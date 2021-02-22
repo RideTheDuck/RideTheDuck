@@ -11149,6 +11149,11 @@
   "resolved" "https://registry.npmjs.org/react-is/-/react-is-17.0.1.tgz"
   "version" "17.0.1"
 
+"react-native-communications@^2.2.1":
+  "integrity" "sha1-eIO1ayCgAu63kMET+GFuqGksp5U="
+  "resolved" "https://registry.npmjs.org/react-native-communications/-/react-native-communications-2.2.1.tgz"
+  "version" "2.2.1"
+
 "react-native-elements@^3.2.0":
   "integrity" "sha512-DgilI1P/S8xV3Uh6sjS7v1H7DsBXhlivG1IwHGJCO3OV3aFNh90bcdcmlKzxLZXWghQItqh9hQR3TLmgaZbU1w=="
   "resolved" "https://registry.npmjs.org/react-native-elements/-/react-native-elements-3.2.0.tgz"
@@ -11174,7 +11179,7 @@
   "resolved" "https://registry.npmjs.org/react-native-geocoder/-/react-native-geocoder-0.5.0.tgz"
   "version" "0.5.0"
 
-"react-native-gesture-handler@^1.10.1", "react-native-gesture-handler@>= 1.0.0", "react-native-gesture-handler@>= 1.5.0":
+"react-native-gesture-handler@^1.0.12", "react-native-gesture-handler@^1.10.1", "react-native-gesture-handler@>= 1.0.0", "react-native-gesture-handler@>= 1.5.0":
   "integrity" "sha512-sDo6T0m+izIDczsIzE63nAqEG3BE/OwkCJoU4/qjdo7ryem7D0Rj/Y+SlAZP2lVAhllo65LDRYqd6SBe4y19Mg=="
   "resolved" "https://registry.npmjs.org/react-native-gesture-handler/-/react-native-gesture-handler-1.10.1.tgz"
   "version" "1.10.1"
@@ -11210,6 +11215,13 @@
   dependencies:
     "lodash" "^4.17.15"
     "prop-types" "^15.7.2"
+
+"react-native-reanimated@^1.0.0":
+  "integrity" "sha512-O+WhgxSjOIzcVdAAvx+h2DY331Ek1knKlaq+jsNLpC1fhRy9XTdOObovgob/aF2ve9uJfPEawCx8381g/tUJZQ=="
+  "resolved" "https://registry.npmjs.org/react-native-reanimated/-/react-native-reanimated-1.13.2.tgz"
+  "version" "1.13.2"
+  dependencies:
+    "fbjs" "^1.0.0"
 
 "react-native-safe-area-context@^3.1.9", "react-native-safe-area-context@>= 0.6.0", "react-native-safe-area-context@3.1.9":
   "integrity" "sha512-wmcGbdyE/vBSL5IjDPReoJUEqxkZsywZw5gPwsVUV1NBpw5eTIdnL6Y0uNKHE25Z661moxPHQz6kwAkYQyorxA=="
@@ -11310,6 +11322,11 @@
     "stacktrace-parser" "^0.1.3"
     "use-subscription" "^1.0.0"
     "whatwg-fetch" "^3.0.0"
+
+"react-navigation-drawer@^2.7.0":
+  "integrity" "sha512-BKQSTpFPGVI3caFlIbY921NYTRDAf9XFCCmyy4aDlxZLI5FNh8FqzrG10voc5AGy7RegjLdNkkJa40ugu0I5jA=="
+  "resolved" "https://registry.npmjs.org/react-navigation-drawer/-/react-navigation-drawer-2.7.0.tgz"
+  "version" "2.7.0"
 
 "react-navigation-stack@^2.10.2":
   "integrity" "sha512-mkJnMFYUyE4JAMGpQO/tOX8SUpckdNkrwgK+5prNwdCKSUY2EqqYv1f9OHUjbhFd9lfmbEGnoB83Lv0/PWv/0g=="

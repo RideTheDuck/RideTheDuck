@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Image,TouchableOpacity, Linking } from "react-native"
 import Icon from 'react-native-vector-icons/FontAwesome';
-
+import Communications from 'react-native-communications';
 const styles = require('../style/card');
 
 const RestaurantInfo = ({ result }) => {
@@ -43,7 +43,9 @@ const RestaurantInfo = ({ result }) => {
             <TouchableOpacity style={styles.directionButton} onPress={() => Linking.openURL(`https://m.yelp.co.uk/biz/${result.alias}#directions`)}>
               <Text style={styles.direction}>Directions</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.phoneButton} onPress={() => call()}>
+            <TouchableOpacity style={styles.phoneButton} onPress={
+            () => Communications.phonecall('0123456789',true)
+          }>
               <Icon name="phone" style={styles.phoneIcon}/>
             </TouchableOpacity>
           </View>
