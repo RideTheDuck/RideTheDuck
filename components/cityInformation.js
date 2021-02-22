@@ -24,7 +24,7 @@ const CityInformation = ({ result }) => {
         </View>
         <View style={city.badge}>
           <Text style={city.badgeText}>
-            <Icon name="clock-o" style={city.icon}/> {result.timezones[0].slice(4)}
+            <Icon name="globe" style={city.icon}/> {result.subregion}
           </Text>
         </View>
         <View style={city.badge}>
