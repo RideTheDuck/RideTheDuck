@@ -7,7 +7,7 @@ export default class Fx extends Component {
     super(props)
     this.state = {
       Home: 'USD',
-      Dest: 'USD',
+      Dest:"GBP",
       Value: 1
     }
   }

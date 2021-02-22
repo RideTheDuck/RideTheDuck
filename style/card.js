@@ -56,12 +56,12 @@ const styles = StyleSheet.create({
         flex: 1
     },
     name: {
-        fontSize: 25,
+        fontSize: 16,
         fontWeight: "bold",
     },
     text: {
         marginTop: 5,
-        fontSize: 16,
+        fontSize: 14,
         fontWeight: "400",
     },
     link: {

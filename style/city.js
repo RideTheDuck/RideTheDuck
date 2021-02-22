@@ -25,6 +25,7 @@ const city = StyleSheet.create({
         fontWeight: "400",
         color: "gray",
         marginBottom: 2,
+        marginLeft: 10,
         alignSelf: "flex-end"
     },
     highlights: {
@@ -39,15 +40,17 @@ const city = StyleSheet.create({
         borderWidth: 3,
         backgroundColor: "#faab18",
         fontSize: 15,
-        // flex:1
+    
     },
     badgeText: {
         color: "#546747",
         fontWeight: "bold",
-        width: "auto",
+        textAlign:"center",
+        width:"auto",
         fontSize: 15,
         marginHorizontal: 10,
         marginVertical: 5,
+        flex:1
     },
     icon: {
         fontSize: 15,
