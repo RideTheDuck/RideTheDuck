@@ -1,5 +1,7 @@
 import React from 'react';
-import { StyleSheet } from "react-native"
+import {
+    StyleSheet
+} from "react-native"
 
 const city = StyleSheet.create({
     container: {
@@ -40,17 +42,17 @@ const city = StyleSheet.create({
         borderWidth: 3,
         backgroundColor: "#faab18",
         fontSize: 15,
-    
+
     },
     badgeText: {
         color: "#546747",
         fontWeight: "bold",
-        textAlign:"center",
-        width:"auto",
+        textAlign: "center",
+        width: "auto",
         fontSize: 15,
         marginHorizontal: 10,
         marginVertical: 5,
-        flex:1
+        flex: 1
     },
     icon: {
         fontSize: 15,
@@ -59,18 +61,28 @@ const city = StyleSheet.create({
     box: {
         display: "flex",
         flexDirection: "row",
-        alignItems: "center",
-        marginBottom: 10
+        backgroundColor: "white",
+        borderRadius: 10,
+        borderColor: '#faab18',
+        borderWidth: 2,
+        shadowOffset: {
+            width: 0,
+            height: 3
+        },
+        shadowOpacity: 0.5,
+        shadowRadius: 5,
+        marginBottom: 10,
     },
     map: {
         flex: 1,
-        width: 100,
-        height: 150
+        width: "100%",
+        height: "100%",
+        borderTopLeftRadius: 10,
+        borderBottomLeftRadius: 10,
     },
     weather: {
         flex: 1,
     }
-
-
 });
+
 module.exports = city;

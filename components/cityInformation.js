@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from "react-native"
+import { View, Text, Image } from "react-native"
 import { Flag } from 'react-native-flagkit'
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import Fx from "./fx"
@@ -7,7 +7,7 @@ import Weather from "./weather"
 import Icon from 'react-native-vector-icons/FontAwesome';
 const city = require('../style/city');
 
-
+let mapApi = "arSCwv1eNIGH7G8-R7goOwlCy-GSr8v3HU3FoTHRlJc"
 const CityInformation = ({ result }) => {
   return (
     <View style={city.container}>
@@ -35,16 +35,15 @@ const CityInformation = ({ result }) => {
         <Text></Text>
       </View>
       <View style={city.box}>
-        <MapView
-                style={city.map}
-                provider={PROVIDER_GOOGLE}
-                initialRegion={{
-                  latitude: result.latlng[0],
-                  longitude: result.latlng[1],
-                  latitudeDelta: 10,
-                  longitudeDelta: 20,
-                }}
-              />
+        <Image
+          style={city.map}
+         source = {
+           {
+             uri: `https://image.maps.ls.hereapi.com/mia/1.6/mapview?apiKey=${mapApi}&ci=${result.capital}&w=320&h=340&z=4
+             `
+           }
+         }
+        />
         <View style={city.weather}>
            <Weather cityName={result.capital}/>
         </View>
