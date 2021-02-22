@@ -1,10 +1,10 @@
 import React from 'react';
-import { View, Text, Image, Linking, TouchableOpacity } from "react-native"
+import { View, Text, Image, TouchableOpacity, Linking } from "react-native"
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const styles = require('../style/card');
 
-const LandmarkInfo = ({ result }) => {
+const HotelInfo = ({ result }) => {
   let call = () => {
     let phoneNumber = result.phone
     if (Platform.OS !== "android") {
@@ -51,5 +51,8 @@ const LandmarkInfo = ({ result }) => {
       </View>
     </View>
   )
+
 };
-export default LandmarkInfo;
+
+
+export default HotelInfo;

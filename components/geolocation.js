@@ -1,47 +1,57 @@
 import React, { Component } from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text, Button, StyleSheet, TouchableOpacity } from 'react-native';
 import Geocoder from 'react-native-geocoder';
+import * as Location from 'expo-location'
+import * as Permissions from 'expo-permissions';
+import Constants from 'expo-constants';
 
-export default class Geolocation extends Component {
-  constructor(props) {
-    super(props);
+const ApiKey = 'arSCwv1eNIGH7G8-R7goOwlCy-GSr8v3HU3FoTHRlJc'
 
-    this.state = {
-      latitude: null,
-      longitude: null,
-      error: null,
-    };
+export default class UserLocation extends Component {
+  state = {
+    userCity: 'London',
+    userCountry: 'UK',
+    error:null
   }
 
-  refresh = () => {
+  componentDidMount() {
     navigator.geolocation.getCurrentPosition(
-      (position) => { 
+      position => {
+        console.log('before')
+        console.log(position.coords.latitude)
+        console.log(position.coords.longitude)
+        this.fetchUserLocation(position.coords.latitude, position.coords.longitude)
+        
+      }, 
+      error => {
         this.setState({
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
-          error: null,
-        });
-      },
-      (error) => this.setState({ error: error.message }),
-      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
-    );
-  };
+          error: 'Error getting the user location'
+        })
+      }
+    )
+  }
+
+  fetchUserLocation(lat, lon) {
+    fetch(
+      `https://reverse.geocoder.ls.hereapi.com/6.2/reversegeocode.json?apiKey=${ApiKey}&mode=retrieveAddresses&mode=retrieveAddresses&prox=${lat},${lon}`
+    )
+    .then(res => res.json())
+    .then(json => {
+      this.setState({
+        userCity: json.Response.View[0].Result[0].Location.Address.City,
+        userCountryCode: json.Response.View[0].Result[0].Location.Address.Country,
+        userCountryName: json.Response.View[0].Result[0].Location.Address.AdditionalData[0].value,
+      })
+      console.log(this.state.userCity)
+      console.log(this.state.userCountryCode)
+      console.log(this.state.userCountryName)
+    })
+  }
 
   render() {
-    Geocoder.geocodePosition(this.state.latitude,this.state.longitude)
-    return (
-      <View style={{ flexGrow: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Latitude: {this.state.latitude}</Text>
-        <Text>Longitude: {this.state.longitude}</Text>
-
-        {this.state.error ? <Text>Error: {this.state.error}</Text> : null}
-         <Button
-          style={{ marginTop: 30 }}
-          onPress={() => { this.refresh(); }}
-          title="Refresh"
-        />
-      </View>
+    console.log(this.state.location)
+		return (
+        <Text style={{fontSize: 20, marginBottom: 20}}>📍Current Location: {this.state.userCity}</Text>
     );
-  }
+	}
 }
-

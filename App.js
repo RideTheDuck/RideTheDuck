@@ -11,7 +11,11 @@ const navigator = createStackNavigator(
     initialRouteName: "RenderComponents",
     defaultNavigationOptions:
     {
-      title: "Ride the Duck 🦆"
+      title: "Ride the Duck 🦆",
+      headerTintColor: "#faab18",
+        headerStyle: {
+          backgroundColor: '#546747'
+        },
     }
   }
 );

@@ -28,6 +28,7 @@ export default class Weather extends React.Component {
   
   handleSubmit = () => {
     const apiKey = 'bda085d769a5bc16c98a5824b1d0b2ca'
+<<<<<<< HEAD
     axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${this.state.cityName}&units=metric&appid=${apiKey}`)
     .then(res => {
       this.setState( {
@@ -36,6 +37,17 @@ export default class Weather extends React.Component {
         icon: res.data.weather[0].icon
       })
     })
+=======
+    axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`)
+      .then(res => {
+        this.setState( {
+          temp: res.data.main.temp,
+          weather: res.data.weather[0].main,
+          icon: res.data.weather[0].icon
+        })
+
+        })
+>>>>>>> main
   }
 
   render() {
