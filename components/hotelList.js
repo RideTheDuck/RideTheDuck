@@ -1,10 +1,10 @@
 import React from 'react';
-import { View, StyleSheet, FlatList,Text } from "react-native"
-import LandmarkInfo from "./landmarkInfo"
+import { View, StyleSheet, FlatList, Text } from "react-native"
+import HotelInfo from "./hotelInfo"
 
-const LandmarksList = ({ results, title }) => {
+const HotelList = ({ results, title }) => {
   return (
-    <View>
+    <View >
       <Text style={styles.title}>{title}</Text>
       <FlatList
         horizontal
@@ -12,7 +12,7 @@ const LandmarksList = ({ results, title }) => {
         data={results}
         keyExtractor={(result) => result.id}
         renderItem={({ item }) => {
-          return <LandmarkInfo result={item}/>;
+          return <HotelInfo result={item} />;
         }}
       />
     </View>
@@ -29,4 +29,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default LandmarksList;
+export default HotelList;
