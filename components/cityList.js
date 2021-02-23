@@ -1,13 +1,15 @@
 import React from 'react';
-import { View, StyleSheet, FlatList, Text } from "react-native"
-import CityInformation from "./cityInformation"
+import { View, StyleSheet, FlatList, Text, FlatView } from "react-native"  
+import CityInformation from "./cityInformation" 
+
+const city = require('../style/city'); 
 
 const CityList = ({ results }) => {
 
-  return (
-      <View >
-       {/* <Text>Results: {results.languages[0].nativeName}</Text>    */}
-      <FlatList
+  return ( 
+    <View >
+      <FlatList  
+      // FaltList --> FaltView
         vertical
         showsHorizontalScrollIndicator={false}
         data={results}
@@ -17,7 +19,6 @@ const CityList = ({ results }) => {
       />
     </View> 
   )
-
 };
 
 const styles = StyleSheet.create({

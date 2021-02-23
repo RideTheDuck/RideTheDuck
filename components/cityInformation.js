@@ -6,9 +6,10 @@ import Fx from "./fx"
 import Weather from "./weather"
 import Icon from 'react-native-vector-icons/FontAwesome';
 const city = require('../style/city');
+let mapApi = "arSCwv1eNIGH7G8-R7goOwlCy-GSr8v3HU3FoTHRlJc" 
 
-let mapApi = "arSCwv1eNIGH7G8-R7goOwlCy-GSr8v3HU3FoTHRlJc"
-const CityInformation = ({ result }) => {
+const CityInformation = ({ result }) => { 
+
   return (
     <View style={city.container}>
       <View style={city.title}>
@@ -54,5 +55,4 @@ const CityInformation = ({ result }) => {
     </View >
   )
 };
-
 export default CityInformation;
