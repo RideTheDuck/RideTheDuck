@@ -1,10 +1,9 @@
 import React from 'react'
-import {
-  SafeAreaView,
-  Text,
-  Image,
-} from 'react-native'
+import { SafeAreaView, Text, Image,  View } from 'react-native'
 import axios from 'axios';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
+const weather = require('../style/weather');
 
 export default class Weather extends React.Component {
   constructor(props) {
@@ -52,17 +51,25 @@ export default class Weather extends React.Component {
     // this.handleSubmit()
     console.log("rendering")
     return(
-      <SafeAreaView>
-      <Text>{this.cityName}</Text>
-      <Text style={{ padding:10, fontSize: 12, fontWeight:'bold' }}>Weather</Text>
-      <Text>Temperature: {this.state.temp}°C</Text>
-      <Text>Outlook: {this.state.weather}</Text>
-      <Image source={{
-        width: 80,
-        height: 80,
-        uri: `http://openweathermap.org/img/w/${this.state.icon}.png` 
-      }} />
-      </SafeAreaView>
+        <View style={weather.container} >
+            <Text style={weather.degrees}>20 {this.state.temp}°C</Text>
+            <View style={weather.image} >
+                <Icon name="cloud" style={weather.icon} />
+                <Text style={weather.state}>cloud {this.state.weather}</Text>
+            </View>
+            <Text style={weather.text}>Overcast clouds</Text>
+            <View style={weather.condition}>
+                <Text style={weather.text}>Min: 1 °C</Text>
+                <Text style={weather.text}>Max: 2 °C</Text>
+            </View>
+            <Text style={weather.text}>Feels like 8°C</Text>
+
+        {/* <Image source={{
+            width: 80,
+            height: 80,
+            uri: `http://openweathermap.org/img/w/${this.state.icon}.png` 
+        }} /> */}
+      </View>
     )
   }
 }
