@@ -1,17 +1,22 @@
-import firebase from 'firebase/app'
-import 'firebase/auth'
-// import { API_KEY, AUTH_DOMAIN, DATABASE_URL, PROJECT_ID, APP_ID, MESSAGE_SENDER_ID} from 'react-native-dotenv'
+import firebase from 'firebase'
+// import {
+//   API_KEY,
+//   AUTH_DOMAIN,
+//   PROJECT_ID,
+//   MESSAGE_SENDER_ID,
+//   APP_ID
+// } from '@env'
 
-const app = firebase.initializeApp({
+const firebaseConfig = {
   apiKey: 'AIzaSyAldv6Emxn7e7HL9SyHMerXWEZG8Jaeb3I',
-  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-  databaseURL: process.env.REACT_APP_FIREBASE_DATABASE_URL,
-  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGE_SENDER_ID,
-  appId: process.env.REACT_APP_FIREBASE_APP_ID
-});
+  authDomain: 'ride-the-duck.firebaseapp.com',
+  projectId: 'ride-the-duck',
+  storageBucket: '',
+  messagingSenderId: '993586584474',
+  appId: '1:993586584474:web:1520602159884f4b1fb823'
+};
+
 // Initialize Firebase
-// firebase.initializeApp(firebaseConfig);
-export const auth = app.auth()
-export default app
+const Firebase = firebase.initializeApp(firebaseConfig)
+
+export default Firebase
