@@ -17,9 +17,9 @@ const weather = StyleSheet.create({
         width:"100%"
     },
     icon: {
-        fontSize: 50,
+        // fontSize: 50,
         alignSelf: "center",
-       color: "#faab18"
+        // color: "#faab18"
 
     },
     info: {

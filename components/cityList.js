@@ -11,6 +11,7 @@ const CityList = ({ results }) => {
         vertical
         showsHorizontalScrollIndicator={false}
         data={results}
+        keyExtractor={(result) => result[0]}
         renderItem={({item}) => {
             return <CityInformation result={item}/>
         }}

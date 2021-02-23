@@ -204,8 +204,8 @@ const styles = StyleSheet.create({
     fontSize: 28,
     marginBottom: 10,
     fontWeight: 'bold',
-    marginBottom: 50
-    // color: '#051d5f',
+    marginBottom: 50,
+    color: '#546747',
   },
   navButton: {
     marginTop: 15,
