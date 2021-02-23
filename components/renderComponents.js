@@ -53,7 +53,7 @@ const RenderComponent = ({ navigation }) => {
 
         {errorMessageHotel ? <HotelList results={filterByRatingHotel(4.5)} title="Hotels" /> : null}
   
-        <Button title = 'Check Flights' onPress={() => setModalVisible(true)}/>
+        <Button style={{ backgroundColor: '#faab18', alignSelf: 'center', padding: 10, paddingLeft: 15, paddingRight: 15, borderRadius: 100, width: '50%', alignItems: 'center' }} title = 'Check Flights' onPress={() => setModalVisible(true)}/>
         
           <Modal animationType="slide" transparent={true} visible={modalVisible} onRequestClose={() => {setModalVisible(!modalVisible)}} >
             <View style={modal.modalContainer}>
