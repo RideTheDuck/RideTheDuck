@@ -28,7 +28,6 @@ const HomeStackScreen = ({ navigation }) => (
         title: "Ride The Duck",
         headerRight: () => (
           <Icon.Button name="bars" size={25} backgroundColor="#546747" onPress={() => navigation.openDrawer()}></Icon.Button>
-          // <Icon.Button name="ios-menu" size={25} backgroundColor="red" options={()=>{navigation.openDrawer()}}></Icon.Button>
         )
       }} />
   </HomeStack.Navigator>
