@@ -1,17 +1,25 @@
 import React from 'react';
 import { View, Text, Image } from "react-native"
-import { Flag } from 'react-native-flagkit'
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import Fx from "./fx"
-import Weather from "./weather"
 import Icon from 'react-native-vector-icons/FontAwesome';
 const city = require('../style/city');
 
-let mapApi = "arSCwv1eNIGH7G8-R7goOwlCy-GSr8v3HU3FoTHRlJc"
-const CityInformation = ({ result }) => {
+const WeatherInfo = ({ result }) => {
+  console.log("here")
+  console.log(result)
   return (
     <View style={city.container}>
-      <View style={city.title}>
+      <Text>it's me'</Text>
+        {/* <Text>{result.name}</Text>
+        <Text style={{ padding:10, fontSize: 12, fontWeight:'bold' }}>Weather</Text>
+        <Text>Temperature: {result.temp} °C</Text>
+        <Text>Outlook: {result.weather}</Text>
+        <Image source={{
+            width: 80,
+            height: 80,
+            uri: `http://openweathermap.org/img/w/${result.icon}.png` 
+        }} /> */}
+      {/* <View style={city.title}>
         <Flag id={`${result.alpha2Code}`} width={30} height={20} />
         <Text style={city.capital}>{result.capital}</Text>
         <Text style={city.nativeName}>{result.nativeName}</Text>
@@ -24,7 +32,7 @@ const CityInformation = ({ result }) => {
         </View>
         <View style={city.badge}>
           <Text style={city.badgeText}>
-            <Icon name="globe" style={city.icon}/> {result.subregion}
+            <Icon name="clock-o" style={city.icon}/> {result.timezones[0].slice(4)}
           </Text>
         </View>
         <View style={city.badge}>
@@ -47,12 +55,12 @@ const CityInformation = ({ result }) => {
         <View style={city.weather}>
            <Weather cityName={result.capital}/>
         </View>
-      </View>
-      <View>
+      </View> */}
+      {/* <View>
         <Fx Dest={result.currencies[0].code} />
-      </View>
+      </View> */}
     </View >
   )
 };
 
-export default CityInformation;
+export default WeatherInfo;

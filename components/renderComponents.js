@@ -1,9 +1,12 @@
-import React, { useState} from 'react';
-import { ScrollView, Button, Modal, View, StyleSheet} from 'react-native';
+
+import { ScrollView, Button, Modal, View, StyleSheet, TouchableOpacity, Text} from 'react-native';
+
 import Search from "./search"
 import RestaurantList from "./restaurantList"
 import LandmarksList from "./landmarksList"
 import FlightsList from "./flightsList"
+import LoginScreen from './User/LoginScreen'
+import SignupScreen from './User/SignupScreen'
 import useRestaurants from "./hooks/useRestaurants"
 import useLandmark from "./hooks/useLandmark"
 import useFlight from "./hooks/useFlight"
@@ -14,6 +17,9 @@ import CityList from "./cityList"
 import useHotel from "./hooks/useHotel"
 
 const RenderComponent = ({ navigation }) => {
+  const styles = require('../style/card');
+  const flight = require('../style/flight');
+
   const [location, setLocation] = useState('')
   const [searchApi, results, errorMessage] = useRestaurants();
   const [searchApiCity, resultsCity, errorMessageCity] = useCity();
@@ -53,18 +59,19 @@ const RenderComponent = ({ navigation }) => {
 
         {errorMessageHotel ? <HotelList results={filterByRatingHotel(4.5)} title="Hotels" /> : null}
   
+
         <Button style={{ backgroundColor: '#faab18', alignSelf: 'center', padding: 10, paddingLeft: 15, paddingRight: 15, borderRadius: 100, width: '50%', alignItems: 'center' }} title = 'Check Flights' onPress={() => setModalVisible(true)}/>
         
-          <Modal animationType="slide" transparent={true} visible={modalVisible} onRequestClose={() => {setModalVisible(!modalVisible)}} >
-            <View style={modal.modalContainer}>
-              <View style={modal.modalView}>
-                <Button  title = 'Close' style={modal.closeModal} onPress={() => setModalVisible (!modalVisible)} />
-                <View style={modal.flights} showsVerticalScrollIndicator={false}>
-                  < FlightsList results={resultsFlight } / >
-                </View>
+        <Modal animationType="slide" transparent={true} visible={modalVisible} onRequestClose={() => {setModalVisible(!modalVisible)}} >
+          <View style={modal.modalContainer}>
+            <View style={modal.modalView}>
+              <Button  title = 'Close' style={modal.closeModal} onPress={() => setModalVisible (!modalVisible)} />
+              <View style={modal.flights} showsVerticalScrollIndicator={false}>
+                < FlightsList results={resultsFlight } / >
               </View>
             </View>
-          </Modal>
+          </View>
+        </Modal>
       </ScrollView>
     </>
   );
@@ -96,5 +103,5 @@ const modal = StyleSheet.create({
   }
 });
 
-
 export default RenderComponent;
+

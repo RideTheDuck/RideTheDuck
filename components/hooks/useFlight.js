@@ -39,17 +39,23 @@ export default () => {
       let flightsArray = []
       let data = responseFlight.data.data
         for (let i = 0; i < data.length; i++) {
-          flightsArray.push({
-            cityFrom: data[i].cityFrom,
-            countryFrom: data[i].countryFrom.name,
-            cityTo: data[i].cityTo,
-            countryTo: data[i].countryTo.name,
-            flightDuration: data[i].fly_duration,
-            currency: Object.keys(data[i].conversion)[0],
-            price: Object.values(data[i].conversion)[0],
-            flightDate: moment(new Date(data[i].aTime * 1000)).format('LLLL'),
-            link: data[i].deep_link
-          })
+          if (data[i].availability.seats > 0) {
+            flightsArray.push({
+              airline: data[i].airlines[0],
+              airportFrom: data[i].route[0].flyFrom,
+              airportTo: data[i].flyTo,
+              cityFrom: data[i].cityFrom,
+              countryFrom: data[i].countryFrom.name,
+              cityTo: data[i].cityTo,
+              countryTo: data[i].countryTo.name,
+              flightDuration: data[i].fly_duration,
+              currency: Object.keys(data[i].conversion)[0],
+              price: Object.values(data[i].conversion)[0],
+              flightDate: moment(new Date(data[i].aTime * 1000)).format('llll'),
+              link: data[i].deep_link
+            })
+          }
+          
         }
       setResultsFlight(flightsArray)
     } catch (err) {
