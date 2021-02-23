@@ -1,6 +1,5 @@
-
+import React, { Component, useState } from 'react';
 import { ScrollView, Button, Modal, View, StyleSheet, TouchableOpacity, Text} from 'react-native';
-
 import Search from "./search"
 import RestaurantList from "./restaurantList"
 import LandmarksList from "./landmarksList"
