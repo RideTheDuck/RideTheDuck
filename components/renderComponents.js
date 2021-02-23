@@ -4,6 +4,8 @@ import Search from "./search"
 import RestaurantList from "./restaurantList"
 import LandmarksList from "./landmarksList"
 import FlightsList from "./flightsList"
+import LoginScreen from './User/LoginScreen'
+import SignupScreen from './User/SignupScreen'
 import useRestaurants from "./hooks/useRestaurants"
 import useLandmark from "./hooks/useLandmark"
 import useFlight from "./hooks/useFlight"
@@ -14,7 +16,10 @@ import { createStackNavigator } from '@react-navigation/stack';
 import HotelList from "./hotelList"
 import CityList from "./cityList"
 import useHotel from "./hooks/useHotel"
+
 const styles = require('../style/card');
+const flight = require('../style/flight');
+
 
 const RenderComponent = ({navigation}) => {
   const [location, setLocation] = useState('')
@@ -55,8 +60,8 @@ const RenderComponent = ({navigation}) => {
 
         {errorMessageHotel ? <HotelList results={filterByRatingHotel(4.5)} title="Hotels" /> : null}
   
-      <View style={{marginBottom: 80, marginTop: 10, marginLeft: 20, marginRight: 20}}>
-      <Text style={{fontSize: 30, fontWeight: 'bold', color: 'grey', marginBottom: 20}}>Flights</Text>
+      <View style={flight.container}>
+      <Text style={flight.title}>Flights</Text>
         <TouchableOpacity style={styles.directionButton} onPress={()=> { navigation.navigate('Flights', { results: resultsFlight }) }}>
           <Text style={styles.direction}>Check Flights</Text>
         </TouchableOpacity>
@@ -72,6 +77,8 @@ export default function StackView() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Screen name="Login" component={LoginScreen}/>
+        <Stack.Screen name="Signup" component={SignupScreen}/>
         <Stack.Screen name="Home" component={RenderComponent}/>
         <Stack.Screen name="Flights" component={FlightsList}/>
       </Stack.Navigator>
