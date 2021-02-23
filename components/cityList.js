@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, FlatList, Text, FlatView } from "react-native"  
+import { View, StyleSheet, FlatList, Text, FlatView, SectionList } from "react-native"  
 import CityInformation from "./cityInformation" 
 
 const city = require('../style/city'); 
@@ -8,7 +8,7 @@ const CityList = ({ results }) => {
 
   return ( 
     <View >
-      <FlatList  
+      <FlatList
       // FaltList --> FaltView
         vertical
         showsHorizontalScrollIndicator={false}

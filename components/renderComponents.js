@@ -14,6 +14,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import HotelList from "./hotelList" 
 import CityList from "./cityList"
 import useHotel from "./hooks/useHotel"
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const RenderComponent = ({navigation}) => {
   const [location, setLocation] = useState('')  
@@ -46,8 +47,8 @@ const RenderComponent = ({navigation}) => {
       <Search location={location} onLocationChange={setLocation} onLocationSubmit={() => { searchApi(location); searchApiCity(location); searchApiLandmark(location); ; searchApiHotel(location); searchApiFlight(location) }} />  
 
       {errorMessageCity ? <CityList results={resultsCity} /> : null}
-      
-      <ScrollView>     
+  
+      <ScrollView>      
       
       {errorMessage ? <RestaurantList results={filterByRating(4.5)} title="Restaurants" /> : null}
       {errorMessageLandmark ? <LandmarksList results={filterByRatingLandmark(4.5)} title="Landmarks" /> : null}
