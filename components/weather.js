@@ -15,6 +15,7 @@ export default class Weather extends React.Component {
       icon: '',
       cityName: 'London'
     }
+    this.handleSubmit(this.props.cityName)
   }
 
   componentDidUpdate(prevProps) {
@@ -23,12 +24,13 @@ export default class Weather extends React.Component {
       this.setState({
         cityName: this.props.cityName
       })
+      this.handleSubmit(this.props.cityName)
     }
   }
   
-  handleSubmit = () => {
+  handleSubmit = (cityName) => {
     const apiKey = '9ec9591a31e3be7446a43513c920d793'
-    axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${this.state.cityName}&units=metric&appid=${apiKey}`)
+    axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`)
     .then(res => {
       this.setState( {
         temp: res.data.main.temp,
@@ -47,7 +49,8 @@ export default class Weather extends React.Component {
   }
 
   render() {
-    this.handleSubmit()
+    // this.handleSubmit()
+    console.log("rendering")
     return(
       <SafeAreaView>
       <Text>{this.cityName}</Text>
