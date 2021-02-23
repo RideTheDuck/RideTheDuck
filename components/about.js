@@ -36,7 +36,12 @@ const About = ({navigation}) => {
           </Text>
         </TouchableOpacity>
       </View>
-      <Text style={about.version}><Icon name="envelope" style={about.icon}/> ridetheduck2021@gmail.com</Text>
+      <Text style={about.version}><Icon name="envelope" style={about.icon} /> ridetheduck2021@gmail.com</Text>
+      < TouchableOpacity style={about.version} onPress={() => Linking.openURL(`https://github.com/RideTheDuck`)} >
+        <Text  style={{color:"gray", fontSize: 18,}}>
+          <Icon name="github" style={about.icon}/> Check behind the scenes
+        </Text>
+      </TouchableOpacity>
       <Text style={about.version}> Copyright <Icon name="copyright" style={about.icon}/>  2021</Text>
     </View> 
   )
@@ -78,15 +83,17 @@ const about = StyleSheet.create({
   authors: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-around",
-    marginBottom: 10
+    justifyContent: "center",
+    flexWrap:"wrap",
+    marginHorizontal: 10
   },
   badge: {
     borderRadius: 10,
-      borderColor: '#faab18',
-      borderWidth: 3,
-      backgroundColor: "#faab18",
-      fontSize: 10,
+    borderColor: '#faab18',
+    borderWidth: 3,
+    backgroundColor: "#faab18",
+    fontSize: 10,
+    margin:10
   },
   badgeText: {
     color: "#546747",
