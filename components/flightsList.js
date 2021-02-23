@@ -4,11 +4,11 @@ import FlightInfo from "./flightInfo"
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-const FlightsList = ({ route, navigation }) => {
-  const { results } = route.params;
+const FlightsList = ({ results }) => {
+  // const { results } = route.params;
   return (
     <View>
-      <Button title="Go Back" onPress={() => navigation.navigate('Home')} />
+      {/* <Button title="Go Back" onPress={() => navigation.navigate('Home')} /> */}
       <FlatList
         vertical
         data={results}

@@ -41,8 +41,7 @@ const city = StyleSheet.create({
         borderColor: '#faab18',
         borderWidth: 3,
         backgroundColor: "#faab18",
-        fontSize: 15,
-
+        fontSize: 15
     },
     badgeText: {
         color: "#546747",

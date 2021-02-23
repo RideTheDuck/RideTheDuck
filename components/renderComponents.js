@@ -1,5 +1,5 @@
 import React, { useState} from 'react';
-import { ScrollView, Button} from 'react-native';
+import { ScrollView, Button, Modal, View, StyleSheet} from 'react-native';
 import Search from "./search"
 import RestaurantList from "./restaurantList"
 import LandmarksList from "./landmarksList"
@@ -9,19 +9,18 @@ import useLandmark from "./hooks/useLandmark"
 import useFlight from "./hooks/useFlight"
 import useCity from "./hooks/useCity"
 import 'react-native-gesture-handler';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 import HotelList from "./hotelList"
 import CityList from "./cityList"
 import useHotel from "./hooks/useHotel"
 
-const RenderComponent = ({navigation}) => {
+const RenderComponent = ({ navigation }) => {
   const [location, setLocation] = useState('')
   const [searchApi, results, errorMessage] = useRestaurants();
   const [searchApiCity, resultsCity, errorMessageCity] = useCity();
   const [searchApiLandmark, resultsLandmark, errorMessageLandmark] = useLandmark();
   const [searchApiFlight, resultsFlight, errorMessageFlight] = useFlight();
   const [searchApiHotel, resultsHotel, errorMessageHotel] = useHotel();
+  const [modalVisible, setModalVisible] = useState(false);
 
   const filterByRating = (rate) => {
     return results.filter(result => {
@@ -40,10 +39,10 @@ const RenderComponent = ({navigation}) => {
       return result.rating >= rate
     })
   }
-
+  
   return (
     <>
-      <Search location={location} onLocationChange={setLocation} onLocationSubmit={() => { searchApi(location); searchApiCity(location); searchApiLandmark(location); ; searchApiHotel(location); searchApiFlight(location) }} />
+      <Search location={location} onLocationChange={setLocation} onLocationSubmit={() => { searchApi(location); searchApiCity(location); searchApiLandmark(location);; searchApiHotel(location); searchApiFlight(location) }} />
     
       <ScrollView>
         {errorMessageCity ? <CityList results={resultsCity} /> : null}
@@ -54,26 +53,48 @@ const RenderComponent = ({navigation}) => {
 
         {errorMessageHotel ? <HotelList results={filterByRatingHotel(4.5)} title="Hotels" /> : null}
   
-        <Button 
-          title='Check Flights' onPress={()=> {
-            navigation.navigate('Flights', {
-              results: resultsFlight
-            })
-          }} />
+        <Button title = 'Check Flights' onPress={() => setModalVisible(true)}/>
+        
+          <Modal animationType="slide" transparent={true} visible={modalVisible} onRequestClose={() => {setModalVisible(!modalVisible)}} >
+            <View style={modal.modalContainer}>
+              <View style={modal.modalView}>
+                <Button  title = 'Close' style={modal.closeModal} onPress={() => setModalVisible (!modalVisible)} />
+                <View style={modal.flights} showsVerticalScrollIndicator={false}>
+                  < FlightsList results={resultsFlight } / >
+                </View>
+              </View>
+            </View>
+          </Modal>
       </ScrollView>
-    </> 
+    </>
   );
 }
 
-const Stack =  createStackNavigator();
+const modal = StyleSheet.create({
+  modalContainer: {
+    flex: 1,
+    display: "flex",
+    flexDirection:"column",
+  },
+  modalView: {
+    flex:1,
+    width: "100%",
+    display: "flex",
+    flexDirection:"column",
+    backgroundColor: "white",
+    borderRadius: 0,
+    paddingTop:50,
+    paddingHorizontal: 10,
+    backgroundColor: "white",
+  },
+  closeModal: {
+    marginTop:150,
+    borderRadius: 20
+  },
+  flights: {
+   paddingBottom:100
+  }
+});
 
-export default function StackView() {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator screenOptions={{headerShown: false}}>
-        <Stack.Screen name="Home" component={RenderComponent}/>
-        <Stack.Screen name="Flights" component={FlightsList}/>
-      </Stack.Navigator>
-    </NavigationContainer>
-  )
-}
+
+export default RenderComponent;

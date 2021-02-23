@@ -20,8 +20,9 @@ const FlightInfo = ({ result }) => {
 
 const styles = StyleSheet.create({
   card: {
-    margin: 20,
-    marginTop: 0,
+    margin: 10,
+    flex: 1,
+    width:"100%",
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
