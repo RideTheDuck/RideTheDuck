@@ -43,7 +43,11 @@ const AboutStackScreen = ({ navigation }) => (
         fontWeight:"bold"
       }
     }}>
-    <AboutStack.Screen name="About" component={About} options={{}}/>
+    <AboutStack.Screen name="About" component={About} options={{
+      headerRight: () => (
+          <Icon.Button name="bars" size={25} backgroundColor="#546747" onPress={() => navigation.openDrawer()}></Icon.Button>
+        )
+    }}/>
   </AboutStack.Navigator>
 )
 
