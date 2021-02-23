@@ -1,21 +1,11 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity, Linking } from "react-native"
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Communications from 'react-native-communications';
 
 const styles = require('../style/card');
 
 const HotelInfo = ({ result }) => {
-  let call = () => {
-    let phoneNumber = result.phone
-    if (Platform.OS !== "android") {
-      phoneNumber = `telprompt:${phoneNumber}`;
-      console.log(`Calling ${phoneNumber}`)
-    } else {
-      phoneNumber = `tel:${phoneNumber}`;
-      console.log(`Calling ${phoneNumber}`)
-    }
-    Linking.canOpenURL(phoneNumber)
-  };
   return (
     <View style={styles.card}>
       <View style={styles.imageBox}>
@@ -43,7 +33,7 @@ const HotelInfo = ({ result }) => {
             <TouchableOpacity style={styles.directionButton} onPress={() => Linking.openURL(`https://m.yelp.co.uk/biz/${result.alias}#directions`)}>
               <Text style={styles.direction}>Directions</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.phoneButton} onPress={() => call()}>
+            <TouchableOpacity style={styles.phoneButton} onPress={ () => Communications.phonecall(result.phone, true)}>
               <Icon name="phone" style={styles.phoneIcon}/>
             </TouchableOpacity>
           </View>

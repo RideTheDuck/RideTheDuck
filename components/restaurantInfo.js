@@ -5,17 +5,6 @@ import Communications from 'react-native-communications';
 const styles = require('../style/card');
 
 const RestaurantInfo = ({ result }) => {
-  let call = () => {
-    let phoneNumber = result.phone
-    if (Platform.OS !== "android") {
-      phoneNumber = `telprompt:${phoneNumber}`;
-      console.log(`Calling ${phoneNumber}`)
-    } else {
-      phoneNumber = `tel:${phoneNumber}`;
-      console.log(`Calling ${phoneNumber}`)
-    }
-    Linking.canOpenURL(phoneNumber)
-  };
   return (
     <View style={styles.card}>
       <View style={styles.imageBox}>
@@ -43,9 +32,7 @@ const RestaurantInfo = ({ result }) => {
             <TouchableOpacity style={styles.directionButton} onPress={() => Linking.openURL(`https://m.yelp.co.uk/biz/${result.alias}#directions`)}>
               <Text style={styles.direction}>Directions</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.phoneButton} onPress={
-            () => Communications.phonecall('0123456789',true)
-          }>
+            <TouchableOpacity style={styles.phoneButton} onPress={ () => Communications.phonecall(result.phone, true)}>
               <Icon name="phone" style={styles.phoneIcon}/>
             </TouchableOpacity>
           </View>
