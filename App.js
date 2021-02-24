@@ -9,7 +9,6 @@ import LoginScreen from "./components/User/LoginScreen";
 import SignupScreen from "./components/User/SignupScreen";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {AuthContext} from "./components/User/AuthProvider"
-// import AntDesign from 'react-native-vector-icons/AntDesign'
 
 const HomeStack = createStackNavigator();
 const AboutStack = createStackNavigator();

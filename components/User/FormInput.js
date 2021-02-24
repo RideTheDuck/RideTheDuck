@@ -1,6 +1,6 @@
 import React from 'react'
-import { StyleSheet, Text, View, TextInput } from 'react-native'
-// import AntDesign from 'react-native-vector-icons/AntDesign'
+import { StyleSheet, Text, View, TextInput, Image } from 'react-native'
+import AntDesign from 'react-native-vector-icons/AntDesign'
 import { windowHeight, windowWidth } from '../Dimensions'
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -9,13 +9,13 @@ const FormInput = ({labelValue, placeholderText, iconType, ...rest}) => {
   return (
     <View style={styles.inputContainer}>
       <View style={styles.iconStyle}>
-        <Icon name={iconType} size={25} color="#fff" />
+      <Image source={require('../../assets/email.png')} style={{width: 30, height: 30}} />
       </View>
       <TextInput 
         value={labelValue}
         style={styles.input}
         placeholder={placeholderText}
-        // placeholderTextColor="#666"
+        placeholderTextColor="#666"
         {...rest}
       />
     </View>
@@ -30,29 +30,28 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     width: '100%',
     height: windowHeight / 15,
-    borderColor: '#faab18',
-    borderRadius: 10,
-    borderWidth: 3,
+    borderColor: '#ccc',
+    borderRadius: 3,
+    borderWidth: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: '#fff',
   },
   iconStyle: {
     padding: 10,
     height: '100%',
-    color: '#546747',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#faab18',
-    borderRightColor: '#faab18',
+    borderRightColor: '#ccc',
     borderRightWidth: 1,
     width: 50,
   },
   input: {
     padding: 10,
     flex: 1,
-    fontSize: 20,
-    color: '#546747',
+    fontSize: 16,
+    // fontFamily: 'Lato-Regular',
+    color: '#333',
     justifyContent: 'center',
     alignItems: 'center',
   },
