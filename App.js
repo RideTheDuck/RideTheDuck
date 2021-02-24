@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, useEffect, useState} from 'react';
 import {NavigationContainer} from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack";
 import {createDrawerNavigator} from "@react-navigation/drawer"
@@ -9,8 +9,7 @@ import LoginScreen from "./components/User/LoginScreen";
 import SignupScreen from "./components/User/SignupScreen";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {AuthContext} from "./components/User/AuthProvider"
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { Image } from 'react-native-elements';
+import { ScrollView, Button, Modal, View, StyleSheet, TouchableOpacity, Text, Image} from 'react-native';
 
 const HomeStack = createStackNavigator();
 const AboutStack = createStackNavigator();
@@ -64,7 +63,7 @@ const App = ({ navigate }) => {
   console.disableYellowBox = true;
   const [isLoading, setIsLoading] = React.useState(true);
   const [userToken, setUserToken] = React.useState("null");
-
+ const [modalVisible, setModalVisible] = useState(false);
   // const authContext = React.useMemo(() => {
   //   return {
   //     login: () => {
@@ -143,10 +142,11 @@ const App = ({ navigate }) => {
                 //   </Icon.Button>
                 // ),
                 headerRight: () => (
-                  <TouchableOpacity onPress={()=> alert('Quack!')}>
-                    <Image 
+                  <TouchableOpacity onPress={() => setModalVisible(true)} >
+                    <Text style={modal.open}>About</Text>
+                    {/* <Image 
                     source={require('./assets/rubber-duck.png')} 
-                    style={{ width: 50, height: 50 }} />
+                    style={{ width: 50, height: 50 }} /> */}
                   </TouchableOpacity>
                   // <Icon.Button
                   //   name="bars"
@@ -182,9 +182,69 @@ const App = ({ navigate }) => {
         <Drawer.Screen name="Home" component={HomeStackScreen} />
         <Drawer.Screen name="About" component={AboutStackScreen} />
       </Drawer.Navigator> */}
-    </NavigationContainer>
+      </NavigationContainer>
+      <Modal animationType="slide" transparent={true} visible={modalVisible} onRequestClose={() => {setModalVisible(!modalVisible)}} >
+          <View style={modal.modalContainer}>
+            <View style={modal.modalView}>
+              <Button  title = 'Close' style={modal.closeModal} onPress={() => setModalVisible (!modalVisible)} />
+              <View style={modal.flights} showsVerticalScrollIndicator={false}>
+                <About/>
+              </View>
+            </View>
+          </View>
+        </Modal>
    </AuthContext.Provider>
+   
   )
 }
-
+const modal = StyleSheet.create({
+  title: {
+    marginLeft: 10,
+    fontSize: 30,
+    fontWeight: "bold",
+    color: "gray"
+  },
+  open: {
+    fontSize: 17,
+    color: "#faab18",
+    fontWeight: "400",
+    marginTop: 10,
+    marginRight: 10,
+  },
+  modalContainer: {
+    flex: 1,
+    display: "flex",
+    flexDirection:"column",
+  },
+  modalView: {
+    flex:1,
+    width: "100%",
+    display: "flex",
+    flexDirection:"column",
+    backgroundColor: "white",
+    borderRadius: 0,
+    paddingTop:50,
+    paddingHorizontal: 10,
+    backgroundColor: "white",
+  },
+  closeModal: {
+    marginTop:150,
+    borderRadius: 20
+  },
+  flights: {
+   paddingBottom:100
+  },
+  quack: {
+    textAlign:"center",
+    flex: 1,
+    display:"flex",
+    width: "100%",
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 100,
+    marginTop: 20,
+    marginBottom:40
+  }
+});
 export default App;
