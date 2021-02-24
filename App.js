@@ -66,8 +66,6 @@ const App = () => {
         <Drawer.Screen name="Home" component={HomeStackScreen} />
         <Drawer.Screen name="About" component={AboutStackScreen} />
       </Drawer.Navigator> */}
-      <Stack.Screen name="Login" component={LoginScreen}/>
-      <Stack.Screen name="Signup" component={SignupScreen}/>
         <Stack.Screen name="Home" component={RenderComponents}
           options = {
           {
@@ -80,6 +78,8 @@ const App = () => {
             )
           }} 
         />
+        <Stack.Screen name="Login" component={LoginScreen}/>
+        <Stack.Screen name="Signup" component={SignupScreen}/>
         {/* <Stack.Screen name="Home" component={RenderComponent}/> */}
         {/* <Stack.Screen name="Flights" component={FlightsList}/> */}
       </Stack.Navigator>

@@ -11,7 +11,7 @@ const weather = StyleSheet.create({
         justifyContent: "center",
         flexWrap: "wrap",
         alignContent: "center",
-        padding:5
+        padding:10
     },
     image: {
         width:"100%"
@@ -26,13 +26,13 @@ const weather = StyleSheet.create({
         width: "100%"
     },
     state: {
-       fontSize: 22,
+       fontSize: 20,
         alignSelf: "center",
         color: "#546747",
         fontWeight: "bold"
     },
     degrees: {
-        fontSize: 24,
+        fontSize: 30,
         alignSelf: "center",
         color: "#546747",
         fontWeight: "bold"
@@ -44,7 +44,7 @@ const weather = StyleSheet.create({
         margin:10
     },
     text: {
-        fontSize: 13,
+        fontSize: 16,
         fontWeight: "400",
         alignSelf: "center",
     },
