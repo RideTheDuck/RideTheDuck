@@ -8,8 +8,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 const city = require('../style/city');
 
 let mapApi = "arSCwv1eNIGH7G8-R7goOwlCy-GSr8v3HU3FoTHRlJc"
-let advisor = "https://www.travel-advisory.info/api?countrycode="
-console.log();
+
 const CityInformation = ({ result }) => {
   return (
     

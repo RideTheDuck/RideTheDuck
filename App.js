@@ -57,10 +57,6 @@ const Stack = createStackNavigator()
 const App = () => {
   return (
     <NavigationContainer>
-      {/* <Drawer.Navigator initialRouteName="Login">
-        <Drawer.Screen name="Home" component={HomeStackScreen} />
-        <Drawer.Screen name="About" component={AboutStackScreen} />
-      </Drawer.Navigator> */}
       <Stack.Navigator>
         <Stack.Screen name="Login" component={LoginScreen}/>
         <Stack.Screen name="Signup" component={SignupScreen}/>
