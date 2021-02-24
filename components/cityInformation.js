@@ -11,9 +11,9 @@ let mapApi = "arSCwv1eNIGH7G8-R7goOwlCy-GSr8v3HU3FoTHRlJc"
 let advisor = "https://www.travel-advisory.info/api?countrycode="
 console.log();
 const CityInformation = ({ result }) => {
-  constructor(props) {
-    this.handleSubmit(this.props.cityName)
-  }
+  // constructor(props) {
+  //   this.handleSubmit(this.props.cityName)
+  // }
   let code = result.alpha2Code
   
   
