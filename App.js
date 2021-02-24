@@ -80,7 +80,7 @@ const App = () => {
         />
         <Stack.Screen name="Login" component={LoginScreen}/>
         <Stack.Screen name="Signup" component={SignupScreen}/>
-        {/* <Stack.Screen name="Home" component={RenderComponent}/> */}
+        <Stack.Screen name="Home" component={RenderComponent}/>
         {/* <Stack.Screen name="Flights" component={FlightsList}/> */}
       </Stack.Navigator>
     </NavigationContainer>

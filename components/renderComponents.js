@@ -1,6 +1,7 @@
 import React, { Component, useState } from 'react';
 import { ScrollView, Button, Modal, View, StyleSheet, TouchableOpacity, Text} from 'react-native';
-import Search from "./search"
+import Search from "./search" 
+import Advisory from "./advisory"
 import RestaurantList from "./restaurantList"
 import LandmarksList from "./landmarksList"
 import FlightsList from "./flightsList"
@@ -52,7 +53,9 @@ const RenderComponent = ({ navigation }) => {
       <ScrollView>
         {errorMessageCity ? <CityList results={resultsCity} /> : null}
         
-        {errorMessage ? <RestaurantList results={filterByRating(4.5)} title="Restaurants" /> : null}
+        <Advisory/>
+
+        {errorMessage ? <RestaurantList results={filterByRating(4.5)} title="Restaurants" /> : null} 
         
         {errorMessageLandmark ? <LandmarksList results={filterByRatingLandmark(4.5)} title="Landmarks" /> : null}
 
@@ -66,7 +69,7 @@ const RenderComponent = ({ navigation }) => {
             <View style={modal.modalView}>
               <Button  title = 'Close' style={modal.closeModal} onPress={() => setModalVisible (!modalVisible)} />
               <View style={modal.flights} showsVerticalScrollIndicator={false}>
-                < FlightsList results={resultsFlight } / >
+                < FlightsList results={resultsFlight }/>
               </View>
             </View>
           </View>
