@@ -46,7 +46,7 @@ const CityInformation = ({ result }) => {
          }
         />
         <View style={city.weather}>
-           <Weather cityName={result.capital}/>
+          <Weather cityName={result.capital} alphaCode={result.alpha2Code}/>
         </View>
       </View>
       <View>

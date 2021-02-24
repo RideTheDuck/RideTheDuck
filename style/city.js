@@ -13,7 +13,8 @@ const city = StyleSheet.create({
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
-        marginBottom: 10
+        marginBottom: 10,
+        flexWrap:"wrap"
     },
     capital: {
         fontSize: 30,

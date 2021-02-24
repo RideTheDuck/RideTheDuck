@@ -78,6 +78,61 @@ const weather = StyleSheet.create({
         height: 120,
 
     },
-    
+    advisoryExt: {
+        marginTop: 10,
+        backgroundColor: "#f2dede",
+        padding: 5,
+        borderBottomRightRadius: 10,
+        borderColor: "#ebccd1",
+        borderWidth: 2,
+        borderTopWidth:4,
+    },
+    extRisk: {
+        color: "#a94442",
+        fontWeight: "600",
+        fontSize: 14,
+    },
+    advisoryHigh: {
+        marginTop: 10,
+        backgroundColor: "#fcf8e3",
+        padding: 5,
+        borderBottomRightRadius: 10,
+        borderColor: "#faebcc",
+        borderWidth: 2,
+        borderTopWidth: 4,
+    },
+    highRisk: {
+        color: "#8a6d3b",
+        fontWeight: "600",
+        fontSize: 14,
+    },
+    advisoryMed: {
+        marginTop: 10,
+        backgroundColor: "#d9edf7",
+        padding: 5,
+        borderBottomRightRadius: 10,
+        borderColor: "#bce8f1",
+        borderWidth: 2,
+        borderTopWidth: 4,
+    },
+    medRisk: {
+        color: "#31708f",
+        fontWeight: "600",
+        fontSize: 14,
+    },
+    advisoryLow: {
+        marginTop: 10,
+        backgroundColor: "#dff0d8",
+        padding: 5,
+        borderBottomRightRadius: 10,
+        borderColor: "#d6e9c6",
+        borderWidth: 2,
+        borderTopWidth: 4,
+    },
+    lowRisk: {
+        color: "#3c763d",
+        fontWeight: "600",
+        fontSize: 14,
+    },
 })
 module.exports = weather;

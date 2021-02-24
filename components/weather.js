@@ -17,7 +17,8 @@ export default class Weather extends React.Component {
       max: '',
       feelsLike: '',
       alphaCode: "GB",
-      message: ""
+      message: "",
+      score:0
       
     }
     this.handleSubmit(this.props.cityName)
@@ -60,9 +61,10 @@ export default class Weather extends React.Component {
           })).then(res => {
             let messg = res.data.data[`${this.props.alphaCode}`]
             this.setState({
-              message: messg.advisory.message
+              message: messg.advisory.message,
+              score: messg.advisory.score
             })
-            console.log("message",res.data.data.GB.advisory.message)
+            console.log("message",res.data.data.GB.advisory.score)
           }));
     } catch (err) {
       console.log("Something went wrong");
@@ -70,9 +72,9 @@ export default class Weather extends React.Component {
   };
 
   render() {
-    return(
-      <View style={weather.container} >
-         <Text>{this.state.message}</Text>
+    return (
+      <View style={weather.mainContainer}>
+        <View style={weather.container}>
             <Text style={weather.degrees}>{this.state.temp}°C</Text>
             <View style={weather.image} >
               <Image style = { weather.icon }
@@ -87,10 +89,41 @@ export default class Weather extends React.Component {
             <Text style={weather.state}>{this.state.weather}</Text>
             </View>
             <View style={weather.condition}>
-                <Text style={weather.text}>Min: {this.state.min}°C</Text>
-                <Text style={weather.text}>Max: {this.state.max}°C</Text>
-            </View>
-            <Text style={weather.text}>Feels like: {this.state.feelsLike}°C</Text>
+              <Text style={weather.text}>Min: {this.state.min}°C</Text>
+              <Text style={weather.text}>Max: {this.state.max}°C</Text>
+          </View>
+          {<Text style={weather.text}>Feels like: {this.state.feelsLike}°C</Text>}
+        </View>
+          
+          {(() => {
+              if (this.state.score < 2.5) {
+                return (
+                  <View style={weather.advisoryLow}>
+                    <Text style={weather.lowRisk}>{this.state.message}</Text>
+                  </View>
+                )
+              } else if (this.state.score >= 2.5 && this.state.score < 3.5) {
+                return (
+                  <View style={weather.advisoryMed}>
+                    <Text style={weather.medRisk}>{this.state.message}</Text>
+                  </View>
+                )
+              } else if (this.state.score >= 3.5 && this.state.score < 4.5) {
+                return (
+                  <View style={weather.advisoryHigh}>
+                    <Text style={weather.highRisk}>{this.state.message}</Text>
+                  </View>
+                )
+              } else {
+                return (
+                  <View style={weather.advisoryExt}>
+                    <Text style={weather.extRisk}>{this.state.message}</Text>
+                  </View>
+                  
+                )
+              }
+          })()}
+        
       </View>
     )
   }

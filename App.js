@@ -1,4 +1,4 @@
-import React, {Component, useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {NavigationContainer} from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack";
 import {createDrawerNavigator} from "@react-navigation/drawer"
@@ -9,7 +9,7 @@ import LoginScreen from "./components/User/LoginScreen";
 import SignupScreen from "./components/User/SignupScreen";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {AuthContext} from "./components/User/AuthProvider"
-import { ScrollView, Button, Modal, View, StyleSheet, TouchableOpacity, Text, Image} from 'react-native';
+import { Button, Modal, View, StyleSheet, TouchableOpacity, Text} from 'react-native';
 
 const HomeStack = createStackNavigator();
 const AboutStack = createStackNavigator();
