@@ -85,7 +85,7 @@ const App = ({ navigate }) => {
   React.useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
-    }, 3000)
+    }, 2870)
   }, []);
 
   if (isLoading) {

@@ -4,7 +4,7 @@ import BouncingPreloader from 'react-native-bouncing-preloader';
 const Splash = ({navigation}) => {
   return (
     <View style={splash.container}>
-        <BouncingPreloader icons={[require('../assets/rubber-duck.png')]} speed={1000} />
+        <BouncingPreloader icons={[require('../assets/rubber-duck.png')]} speed={900} />
         <Text style={splash.text}>Ride the Duck</Text>
     </View> 
   )

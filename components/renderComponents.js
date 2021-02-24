@@ -1,5 +1,5 @@
 import React, { Component, useState } from 'react';
-import { ScrollView, Button, Modal, View, StyleSheet, TouchableOpacity, Text} from 'react-native';
+import { ScrollView, Button, Modal, View, StyleSheet, TouchableOpacity, Text, Image} from 'react-native';
 import Search from "./search"
 import RestaurantList from "./restaurantList"
 import LandmarksList from "./landmarksList"
@@ -76,6 +76,17 @@ const RenderComponent = ({ navigation }) => {
             </View>
           </View>
         </Modal>
+        <TouchableOpacity style={modal.quack} onPress={()=> alert('Quack!')}>
+          <Image 
+          source={require('../assets/rubber-duck.png')} 
+          style = {
+            {
+              width: 50,
+              height: 50,
+            }
+          }
+          />
+        </TouchableOpacity>
       </ScrollView>
     </>
   );
@@ -99,7 +110,6 @@ const modal = StyleSheet.create({
     backgroundColor: "#faab18",
     marginHorizontal:10,
     marginTop: 10,
-    marginBottom:60
   },
   modalContainer: {
     flex: 1,
@@ -123,6 +133,18 @@ const modal = StyleSheet.create({
   },
   flights: {
    paddingBottom:100
+  },
+  quack: {
+    textAlign:"center",
+    flex: 1,
+    display:"flex",
+    width: "100%",
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 100,
+    marginTop: 20,
+    marginBottom:40
   }
 });
 
