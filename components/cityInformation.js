@@ -11,27 +11,10 @@ let mapApi = "arSCwv1eNIGH7G8-R7goOwlCy-GSr8v3HU3FoTHRlJc"
 let advisor = "https://www.travel-advisory.info/api?countrycode="
 console.log();
 const CityInformation = ({ result }) => {
-  constructor(props) {
-    this.handleSubmit(this.props.cityName)
-  }
-  let code = result.alpha2Code
-  
-  
-
-  handleAdvisor = (code) => {
-    const apiKey = '9ec9591a31e3be7446a43513c920d793'
-    axios.get(`https://www.travel-advisory.info/api?countrycode=${code}`)
-      .then(res => {
-      console.log(res)
-      // this.setState( {
-      //   message: res.data.main.temp,
-      //   weather: res.data.weather[0].main,
-      //   icon: res.data.weather[0].icon
-      // })
-    })
-  }
   return (
+    
     <View style={city.container}>
+      
       <View style={city.title}>
         <Flag id={`${result.alpha2Code}`} width={30} height={20} />
         <Text style={city.capital}>{result.capital}</Text>
@@ -68,7 +51,7 @@ const CityInformation = ({ result }) => {
         />
         <View style={city.weather}>
           
-           <Weather cityName={result.capital}/>
+           <Weather cityName={result.capital} alphaCode={result.alpha2Code}/>
         </View>
       </View>
       <View>

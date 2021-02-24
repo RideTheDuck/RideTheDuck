@@ -2,8 +2,9 @@ import React from 'react'
 import { SafeAreaView, Text, Image,  View } from 'react-native'
 import axios from 'axios';
 import Icon from 'react-native-vector-icons/FontAwesome';
-
+import advisory from "../api/advisory"
 const weather = require('../style/weather');
+
 
 export default class Weather extends React.Component {
   constructor(props) {
@@ -12,18 +13,23 @@ export default class Weather extends React.Component {
       temp: '',
       weather: '',
       icon: '',
-      cityName: 'London'
+      cityName: 'London',
+      alphaCode: "GB",
+      message:""
     }
     this.handleSubmit(this.props.cityName)
+    this.searchApiAdv(this.props.alphaCode)
   }
-
+  
   componentDidUpdate(prevProps) {
     if (prevProps.cityName !== this.props.cityName) {
       console.log('location has changed!!')
       this.setState({
-        cityName: this.props.cityName
+        cityName: this.props.cityName,
+        alphaCode: this.props.alphaCode
       })
       this.handleSubmit(this.props.cityName)
+      this.searchApiAdv(this.props.alphaCode)
     }
   }
   
@@ -37,21 +43,34 @@ export default class Weather extends React.Component {
         icon: res.data.weather[0].icon
       })
     })
-    // axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`)
-    //   .then(res => {
-    //     this.setState( {
-    //       temp: res.data.main.temp,
-    //       weather: res.data.weather[0].main,
-    //       icon: res.data.weather[0].icon
-    //     })
-    // })
   }
-
+  
+  searchApiAdv = (alphaCode) => {
+    try {
+      fetch(`https://www.travel-advisory.info/api?countrycode=${this.props.alphaCode}`)
+        
+        .then(response => 
+          response.json().then(data => ({
+            data: data,
+            status: response.status
+          })).then(res => {
+            let messg = res.data.data[`${this.props.alphaCode}`]
+            this.setState({
+              message: messg.advisory.message
+            })
+            console.log("message",res.data.data.GB.advisory.message)
+          }));
+    } catch (err) {
+      console.log("Something went wrong");
+    }
+  };
   render() {
-    console.log("rendering")
+    console.log("this=>",this.props.alphaCode)
     return(
-        <View style={weather.container} >
+      <View style={weather.container} >
+        <Text>{this.state.message}</Text>
             <Text style={weather.degrees}>{this.state.temp}°C</Text>
+            
             <View style={weather.image} >
               < Image style = { weather.icon }
                 source = {
