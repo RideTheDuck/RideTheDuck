@@ -9,7 +9,8 @@ import LoginScreen from "./components/User/LoginScreen";
 import SignupScreen from "./components/User/SignupScreen";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {AuthContext} from "./components/User/AuthProvider"
-// import AntDesign from 'react-native-vector-icons/AntDesign'
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { Image } from 'react-native-elements';
 
 const HomeStack = createStackNavigator();
 const AboutStack = createStackNavigator();
@@ -142,13 +143,18 @@ const App = ({ navigate }) => {
                 //   </Icon.Button>
                 // ),
                 headerRight: () => (
-                  <Icon.Button
-                    name="bars"
-                    size={25}
-                    backgroundColor="#546747"
-                  // onPress={() => props.navigation.navigate('About')}
-                  >
-                  </Icon.Button>
+                  <TouchableOpacity onPress={()=> alert('Quack!')}>
+                    <Image 
+                    source={require('./assets/rubber-duck.png')} 
+                    style={{ width: 50, height: 50 }} />
+                  </TouchableOpacity>
+                  // <Icon.Button
+                  //   name="bars"
+                  //   size={25}
+                  //   backgroundColor="#546747"
+                  // // onPress={() => props.navigation.navigate('About')}
+                  // >
+                  // </Icon.Button>
                 )
               }
             }

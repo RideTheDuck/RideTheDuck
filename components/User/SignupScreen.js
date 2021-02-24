@@ -1,12 +1,12 @@
 import { StyleSheet, Text, View, TouchableOpacity, Image, Touchable, Component, TextInput } from 'react-native'
 import FormButton from './FormButton'
-import FormInput from './FormInput'
 import SocialButton from './SocialButton'
 import React, { useContext, useState } from 'react';
 import Firebase from '../config/Firebase'
 import { AuthContext } from './AuthProvider';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { windowHeight, windowWidth } from '../Dimensions'
 
 
 
@@ -14,41 +14,78 @@ class Signup extends React.Component {
   state = {
     name: '',
     email: '',
-    password: ''
+    password: '',
+    error:''
   }
 
   handleSignUp = () => {
     const { email, password } = this.state
     Firebase.auth()
       .createUserWithEmailAndPassword(email, password)
-      .then(() => this.props.navigation.navigate('Login') )
-      .catch(error => console.log(error))
+      .then(() => this.props.navigation.navigate('Login'))
+      .catch(error => {
+        console.log(error)
+        let errorMessage = error.message
+        this.onLoginFailure.bind(this)(errorMessage)
+      })
+  }
+
+  onLoginFailure(errorMessage){
+    this.setState({error: errorMessage})
   }
 
   render() {
     return (
       <View style={styles.container}>
+      <Text style={{color:'red', marginBottom: 50}}>{this.state.error}</Text>
         <Text style={styles.text}>Create an account</Text>
-        <FormInput
-          iconType="user"
-          value={this.state.name}
-          onChangeText={name => this.setState({ name })}
-          placeholder='Full Name'
-        />
-        <FormInput
-          iconType="envelope-o"
-          value={this.state.email}
-          onChangeText={email => this.setState({ email })}
-          placeholder='Email'
-          autoCapitalize='none'
-        />
-        <FormInput
-          iconType="lock"
-          value={this.state.password}
-          onChangeText={password => this.setState({ password })}
-          placeholder='Password'
-          secureTextEntry={true}
-        />
+
+        <View style={styles.inputContainer}>
+          <View style={styles.iconStyle}>
+            <Image source={require('../../assets/user.png')} style={{ width: 30, height: 30 }} />
+          </View>
+          <TextInput
+            style={styles.input}
+            onChangeText={name => this.setState({ name })}
+            placeholder="Full Name"
+            placeholderTextColor="#666"
+            autoCapitalize='none'
+            autoCapitalize="none"
+            autoCorrect={false}
+          />
+        </View>
+
+        <View style={styles.inputContainer}>
+          <View style={styles.iconStyle}>
+            <Image source={require('../../assets/email.png')} style={{ width: 30, height: 30 }} />
+          </View>
+          <TextInput
+            style={styles.input}
+            onChangeText={email => this.setState({ email })}
+            placeholder="Email"
+            placeholderTextColor="#666"
+            autoCapitalize='none'
+            autoCapitalize="none"
+            autoCorrect={false}
+          />
+        </View>
+
+
+      <View style={styles.inputContainer}>
+          <View style={styles.iconStyle}>
+            <Image source={require('../../assets/lock.png')} style={{ width: 30, height: 30 }} />
+          </View>
+          <TextInput
+            style={styles.input}
+            onChangeText={password => this.setState({ password })}
+            placeholder="Password"
+            placeholderTextColor="#666"
+            autoCapitalize='none'
+            secureTextEntry={true}
+            autoCapitalize="none"
+            autoCorrect={false}
+          />
+        </View>
 
         <FormButton
           buttonTitle="Sign Up"
@@ -65,6 +102,8 @@ class Signup extends React.Component {
         <TouchableOpacity style={styles.navButton} onPress={() => { this.props.navigation.navigate('Login') }}>
           <Text style={styles.navButtonText}>Have an account? Sign In</Text>
         </TouchableOpacity>
+
+        
 
       </View>
     )
@@ -142,6 +181,46 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     // fontFamily: 'Lato-Regular',
     color: 'grey',
+  },
+  inputContainer: {
+    marginTop: 5,
+    marginBottom: 10,
+    width: '100%',
+    height: windowHeight / 15,
+    borderColor: '#ccc',
+    borderRadius: 3,
+    borderWidth: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+  },
+  iconStyle: {
+    padding: 10,
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRightColor: '#ccc',
+    borderRightWidth: 1,
+    width: 50,
+  },
+  input: {
+    padding: 10,
+    flex: 1,
+    fontSize: 16,
+    // fontFamily: 'Lato-Regular',
+    color: '#333',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  inputField: {
+    padding: 10,
+    marginTop: 5,
+    marginBottom: 10,
+    width: windowWidth / 1.5,
+    height: windowHeight / 15,
+    fontSize: 16,
+    borderRadius: 8,
+    borderWidth: 1,
   },
 })
 

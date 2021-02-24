@@ -1,47 +1,76 @@
 import { StyleSheet, Text, View, TouchableOpacity, Image, Touchable, Component, TextInput } from 'react-native'
 import FormButton from './FormButton'
-import FormInput from './FormInput'
 import SocialButton from './SocialButton'
 import React, { useContext, useState } from 'react';
 import Firebase from '../config/Firebase'
 import { AuthContext } from './AuthProvider';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { windowHeight, windowWidth } from '../Dimensions'
+
 
 
 
 class Login extends React.Component {
+  state = {
+    error: ''
+  }
   handleLogin = () => {
-    const { email, password } = this.state
+    const { email, password} = this.state
 
     Firebase.auth()
       .signInWithEmailAndPassword(email, password)
-      .then(() => this.props.navigation.navigate('Home') )
-      .catch(error => console.log(error))
+      .then(() => this.props.navigation.navigate('Home'))
+      .catch(error => {
+        console.log(error)
+        let errorMessage = error.message
+        this.onSignupFailure.bind(this)(errorMessage)
+      })
   }
+
+  onSignupFailure(errorMessage){
+    this.setState({error: errorMessage})
+  }
+
 
   render() {
     return (
       <View style={styles.container}>
-      
-        <Image source={require('../../assets/rubber-duck.png')} style={styles.logo}/>
+      <Text style={{color:'red', marginBottom: 50}}>{this.state.error}</Text>
+
+        <Image source={require('../../assets/rubber-duck.png')} style={styles.logo} />
         <Text style={styles.text}>Ride the Duck</Text>
-        <FormInput
-          iconType="user"
-          onChangeText={email => this.setState({ email })}
-          placeholder='Email'
-          autoCapitalize="none"
-        autoCorrect={false}
-        />
-        <FormInput
-          iconType="lock"
-          onChangeText={password => this.setState({ password })}
-          placeholder='Password'
-          autoCapitalize='none'
+        
+        <View style={styles.inputContainer}>
+          <View style={styles.iconStyle}>
+            <Image source={require('../../assets/email.png')} style={{ width: 30, height: 30 }} />
+          </View>
+          <TextInput
+            style={styles.input}
+            onChangeText={email => this.setState({ email })}
+            placeholder="Email"
+            placeholderTextColor="#666"
+            autoCapitalize="none"
+          autoCorrect={false}
+          />
+        </View>
+
+        <View style={styles.inputContainer}>
+          <View style={styles.iconStyle}>
+            <Image source={require('../../assets/lock.png')} style={{ width: 30, height: 30 }} />
+          </View>
+          <TextInput
+            style={styles.input}
+            onChangeText={password => this.setState({ password })}
+            placeholder="Password"
+            placeholderTextColor="#666"
+            autoCapitalize='none'
           secureTextEntry={true}
           autoCapitalize="none"
-        autoCorrect={false}
-        />
+          autoCorrect={false}
+          />
+        </View>
+
         <FormButton
           buttonTitle="Log In"
           onPress={this.handleLogin}
@@ -73,10 +102,10 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   logo: {
-        height: 150,
-        width: 150,
-        resizeMode: 'cover',
-      },
+    height: 150,
+    width: 150,
+    resizeMode: 'cover',
+  },
   button: {
     marginTop: 30,
     marginBottom: 20,
@@ -132,6 +161,46 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     // fontFamily: 'Lato-Regular',
     color: 'grey',
+  },
+  inputContainer: {
+    marginTop: 5,
+    marginBottom: 10,
+    width: '100%',
+    height: windowHeight / 15,
+    borderColor: '#ccc',
+    borderRadius: 3,
+    borderWidth: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+  },
+  iconStyle: {
+    padding: 10,
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRightColor: '#ccc',
+    borderRightWidth: 1,
+    width: 50,
+  },
+  input: {
+    padding: 10,
+    flex: 1,
+    fontSize: 16,
+    // fontFamily: 'Lato-Regular',
+    color: '#333',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  inputField: {
+    padding: 10,
+    marginTop: 5,
+    marginBottom: 10,
+    width: windowWidth / 1.5,
+    height: windowHeight / 15,
+    fontSize: 16,
+    borderRadius: 8,
+    borderWidth: 1,
   },
 })
 
