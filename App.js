@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {NavigationContainer} from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack";
 import {createDrawerNavigator} from "@react-navigation/drawer"
@@ -57,7 +57,7 @@ const Stack = createStackNavigator()
 //   </AboutStack.Navigator>
 // )
 
-const App = () => {
+const App = ({navigate}) => {
   const [isLoading, setIsLoading] = React.useState(true);
   const [userToken, setUserToken] = React.useState("null");
 
@@ -130,20 +130,21 @@ const App = () => {
                 headerTitleStyle: {
                   fontWeight: "bold"
                 },
-                headerLeft: () => (
-                  <Icon.Button
-                    name="bars"
-                    size={25}
-                    backgroundColor="#546747"
-                    onPress={() => Signup()}>
-                  </Icon.Button>
-                ),
+                // headerLeft: () => (
+                //   <Icon.Button
+                //     name="bars"
+                //     size={25}
+                //     backgroundColor="#546747"
+                //     onPress={() => Login()}>
+                //   </Icon.Button>
+                // ),
                 headerRight: () => (
                   <Icon.Button
                     name="bars"
                     size={25}
                     backgroundColor="#546747"
-                    onPress={() => navigation.navigate('About')}>
+                  // onPress={() => props.navigation.navigate('About')}
+                  >
                   </Icon.Button>
                 )
               }
