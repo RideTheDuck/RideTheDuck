@@ -1,7 +1,7 @@
 import React from 'react'
-import { SafeAreaView, Text, Image,  View } from 'react-native'
+import { Text, Image,  View } from 'react-native'
 import axios from 'axios';
-import Icon from 'react-native-vector-icons/FontAwesome';
+
 
 const weather = require('../style/weather');
 
@@ -22,7 +22,6 @@ export default class Weather extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.cityName !== this.props.cityName) {
-      console.log('location has changed!!')
       this.setState({
         cityName: this.props.cityName
       })
