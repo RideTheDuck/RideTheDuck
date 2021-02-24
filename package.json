@@ -5,7 +5,8 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "test":"jest"
   },
   "dependencies": {
     "@ant-design/icons-react-native": "^2.2.1",
@@ -26,6 +27,9 @@
     "expo-status-bar": "~1.0.3",
     "firebase": "^8.2.9",
     "google-maps-react": "^2.0.6",
+    "jest": "^24.9.0",
+    "jest-expo": "^40.0.2",
+    "jest-fetch-mock": "^3.0.3",
     "moment": "^2.29.1",
     "react": "16.13.1",
     "react-currency-conv": "^1.1.0",
@@ -59,5 +63,12 @@
   "devDependencies": {
     "@babel/core": "~7.9.0"
   },
-  "private": true
+  "private": true,
+  "jest":{
+    "preset":"react-native",
+    "transformIgnorePatterns": [
+      "node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base)"
+    ],
+    "automock":false
+  }
 }
