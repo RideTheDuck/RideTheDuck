@@ -1,6 +1,5 @@
 import { StyleSheet, Text, View, TouchableOpacity, Image, Touchable, Component, TextInput } from 'react-native'
 import FormButton from './FormButton'
-import FormInput from './FormInput'
 import SocialButton from './SocialButton'
 import React, { useContext, useState } from 'react';
 import Firebase from '../config/Firebase'
