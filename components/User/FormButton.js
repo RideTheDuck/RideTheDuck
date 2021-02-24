@@ -27,6 +27,5 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     color: '#546747',
-    // fontFamily: 'Lato-Regular',
   },
 })
