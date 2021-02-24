@@ -8,6 +8,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 const city = require('../style/city');
 
 let mapApi = "arSCwv1eNIGH7G8-R7goOwlCy-GSr8v3HU3FoTHRlJc"
+
 const CityInformation = ({ result }) => {
   return (
     <View style={city.container}>

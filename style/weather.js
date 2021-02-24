@@ -14,13 +14,9 @@ const weather = StyleSheet.create({
         padding:10
     },
     image: {
-        width:"100%"
-    },
-    icon: {
-        fontSize: 50,
-        alignSelf: "center",
-       color: "#faab18"
-
+        width: "100%",
+        alignItems: "center",
+        color: "#faab18"
     },
     info: {
         width: "100%"
