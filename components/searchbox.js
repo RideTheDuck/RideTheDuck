@@ -56,6 +56,7 @@ export default class SearchBox extends Component {
                         isShowingResults: false,
                       })
                     }>
+                    
                     <Text>{item.description}</Text>
                   </TouchableOpacity>
                 );
