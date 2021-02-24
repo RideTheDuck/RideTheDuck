@@ -47,8 +47,13 @@ An all-in-one traveller app that provides useful information for a selected dest
 ## User Stories
 ```
 As a user,
-So that I can create a new journey,
-I need to be able to select a default origin.
+So that I can create an account,
+I need to be able to create an account.
+```
+```
+As a user,
+So that I can log into and out of my account,
+I need to be able to log in and out.
 ```
 ```
 As a user,
