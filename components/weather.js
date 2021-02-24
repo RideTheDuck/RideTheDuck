@@ -1,7 +1,7 @@
 import React from 'react'
-import { SafeAreaView, Text, Image,  View } from 'react-native'
+import { Text, Image,  View } from 'react-native'
 import axios from 'axios';
-import Icon from 'react-native-vector-icons/FontAwesome';
+
 
 const weather = require('../style/weather');
 
@@ -12,14 +12,16 @@ export default class Weather extends React.Component {
       temp: '',
       weather: '',
       icon: '',
-      cityName: 'London'
+      cityName: 'London',
+      min: '',
+      max: '',
+      feelsLike: ''
     }
     this.handleSubmit(this.props.cityName)
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.cityName !== this.props.cityName) {
-      console.log('location has changed!!')
       this.setState({
         cityName: this.props.cityName
       })
@@ -34,26 +36,20 @@ export default class Weather extends React.Component {
       this.setState( {
         temp: res.data.main.temp,
         weather: res.data.weather[0].main,
-        icon: res.data.weather[0].icon
+        icon: res.data.weather[0].icon,
+        min: res.data.main.temp_min,
+        max: res.data.main.temp_max,
+        feelsLike: res.data.main.feels_like,
       })
     })
-    // axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`)
-    //   .then(res => {
-    //     this.setState( {
-    //       temp: res.data.main.temp,
-    //       weather: res.data.weather[0].main,
-    //       icon: res.data.weather[0].icon
-    //     })
-    // })
   }
 
   render() {
-    console.log("rendering")
     return(
         <View style={weather.container} >
             <Text style={weather.degrees}>{this.state.temp}°C</Text>
             <View style={weather.image} >
-              < Image style = { weather.icon }
+              <Image style = { weather.icon }
                 source = {
                   {
                     width: 80,
@@ -64,15 +60,14 @@ export default class Weather extends React.Component {
                 />
             <Text style={weather.state}>{this.state.weather}</Text>
             </View>
-            <Text style={weather.text}>Overcast clouds</Text>
             <View style={weather.condition}>
-                <Text style={weather.text}>Min: 1 °C</Text>
-                <Text style={weather.text}>Max: 2 °C</Text>
+                <Text style={weather.text}>Min: {this.state.min}°C</Text>
+                <Text style={weather.text}>Max: {this.state.max}°C</Text>
             </View>
-            <Text style={weather.text}>Feels like 8°C</Text>
+            <Text style={weather.text}>Feels like: {this.state.feelsLike}°C</Text>
       </View>
     )
   }
-}
+};
 
 

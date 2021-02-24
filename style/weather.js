@@ -39,7 +39,7 @@ const weather = StyleSheet.create({
         margin:10
     },
     text: {
-        fontSize: 16,
+        fontSize: 14,
         fontWeight: "400",
         alignSelf: "center",
     },
