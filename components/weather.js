@@ -15,17 +15,23 @@ export default class Weather extends React.Component {
       cityName: 'London',
       min: '',
       max: '',
-      feelsLike: ''
+      feelsLike: '',
+      alphaCode: "GB",
+      message: ""
+      
     }
     this.handleSubmit(this.props.cityName)
+    this.searchApiAdv(this.props.alphaCode)
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.cityName !== this.props.cityName) {
       this.setState({
-        cityName: this.props.cityName
+        cityName: this.props.cityName,
+        alphaCode: this.props.alphaCode
       })
       this.handleSubmit(this.props.cityName)
+      this.searchApiAdv(this.props.alphaCode)
     }
   }
   
@@ -43,10 +49,30 @@ export default class Weather extends React.Component {
       })
     })
   }
+  searchApiAdv = (alphaCode) => {
+    try {
+      fetch(`https://www.travel-advisory.info/api?countrycode=${this.props.alphaCode}`)
+        
+        .then(response => 
+          response.json().then(data => ({
+            data: data,
+            status: response.status
+          })).then(res => {
+            let messg = res.data.data[`${this.props.alphaCode}`]
+            this.setState({
+              message: messg.advisory.message
+            })
+            console.log("message",res.data.data.GB.advisory.message)
+          }));
+    } catch (err) {
+      console.log("Something went wrong");
+    }
+  };
 
   render() {
     return(
-        <View style={weather.container} >
+      <View style={weather.container} >
+         <Text>{this.state.message}</Text>
             <Text style={weather.degrees}>{this.state.temp}°C</Text>
             <View style={weather.image} >
               <Image style = { weather.icon }
