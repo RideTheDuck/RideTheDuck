@@ -16,7 +16,6 @@ const weather = StyleSheet.create({
     image: {
         width: "100%",
         alignItems: "center",
-        color: "#faab18"
     },
     info: {
         width: "100%"

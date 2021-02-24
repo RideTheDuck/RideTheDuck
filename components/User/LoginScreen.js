@@ -285,10 +285,10 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#fff'
+    color: '#546747'
   },
   buttonSignup: {
-    fontSize: 12
+    fontSize: 20
   },
 
   container: {
@@ -302,7 +302,7 @@ const styles = StyleSheet.create({
     // fontFamily: 'Kufam-SemiBoldItalic',
     fontSize: 28,
     marginBottom: 10,
-    color: '#FFA500',
+    color: "#546747",
     fontWeight: 'bold',
     marginBottom: 50,
   },
@@ -310,7 +310,7 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
   navButtonText: {
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: '500',
     color: '#2e64e5',
     // fontFamily: 'Lato-Regular',

@@ -14,7 +14,7 @@ const FormInput = ({labelValue, placeholderText, iconType, ...rest}) => {
         value={labelValue}
         style={styles.input}
         placeholder={placeholderText}
-        placeholderTextColor="#666"
+        // placeholderTextColor="#666"
         {...rest}
       />
     </View>
@@ -29,28 +29,30 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     width: '100%',
     height: windowHeight / 15,
-    borderColor: '#ccc',
-    borderRadius: 3,
-    borderWidth: 1,
+    borderColor: '#faab18',
+    borderRadius: 10,
+    borderWidth: 3,
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: 'white',
   },
   iconStyle: {
     padding: 10,
     height: '100%',
+    color: '#546747',
     justifyContent: 'center',
     alignItems: 'center',
-    borderRightColor: '#ccc',
+    backgroundColor: '#faab18',
+    borderRightColor: '#faab18',
     borderRightWidth: 1,
     width: 50,
   },
   input: {
     padding: 10,
     flex: 1,
-    fontSize: 16,
+    fontSize: 20,
     // fontFamily: 'Lato-Regular',
-    color: '#333',
+    color: '#546747',
     justifyContent: 'center',
     alignItems: 'center',
   },
