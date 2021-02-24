@@ -16,8 +16,9 @@ export default class Advisory extends Component {
 
     render() {
         return (
-            <Text>{this.state.advisoryState}</Text>
+            <Text></Text>
         )
     }
 } 
 
+//{this.state.advisoryState}

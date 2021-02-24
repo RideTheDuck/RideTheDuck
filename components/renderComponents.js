@@ -49,9 +49,10 @@ const RenderComponent = ({ navigation }) => {
   return (
     <>
       <Search location={location} onLocationChange={setLocation} onLocationSubmit={() => { searchApi(location); searchApiCity(location); searchApiLandmark(location);; searchApiHotel(location); searchApiFlight(location) }} />
-    
+
+      {errorMessageCity ? <CityList results={resultsCity} /> : null}
+
       <ScrollView>
-        {errorMessageCity ? <CityList results={resultsCity} /> : null}
         
         <Advisory/>
 
