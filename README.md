@@ -97,7 +97,7 @@ I need to be able to see the cheapest deals for flights.
 ```
 =================================
 ## Tech Stack 
-<img src='./assets/firebase-1-logo-png-transparent.png' alt='Firebase Logo' style='width: 20; height: 30'> <img src='./assets/react.png' alt='React Logo' style='width: 32px; height: 30px'> <img src='./assets/node.png' alt='NodeJS Logo' style='width: 32px; height: 30px'> <img src='./assets/jestlogo.png' alt='NodeJS Logo' style='width:32px; height: 32px'>
+<img src='./assets/firebase-1-logo-png-transparent.png' alt='Firebase Logo' width='20' height= '30'> <img src='./assets/react.png' alt='React Logo' width='32' height= '30'> <img src='./assets/node.png' alt='NodeJS Logo' width='32' height= '30'> <img src='./assets/jestlogo.png' alt='NodeJS Logo' width='32' height= '32'>
 
 * Database - Firebase 
   * We decided to use Firebase as we wanted to try a different way of storing data than we have already used. Firebase seemed to have easy integration with React Native and was more lightweight than using another database framework (for example PostgreSQL.)
@@ -108,10 +108,10 @@ I need to be able to see the cheapest deals for flights.
   
 =================================
 ### Initial Concept Wireframe
-<img src="./assets/initial_concept_wf.png" alt="Initial Wireframe" width="50%"> 
+<img src="./assets/initial_concept_wf.png" alt="Initial Wireframe" width="30%"> 
 
 ### Final Concept Wireframe
-<img src='./assets/final_concept_wf.png' alt="Wireframe" width="50%">
+<img src='./assets/final_concept_wf.png' alt="Wireframe" width="30%">
 
 ### Product Presentation
 <img src='./assets/Ride.gif'>
