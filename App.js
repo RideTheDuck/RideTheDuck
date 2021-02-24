@@ -59,7 +59,8 @@ console.disableYellowBox = true;
 //   </AboutStack.Navigator>
 // )
 
-const App = ({navigate}) => {
+const App = ({ navigate }) => {
+  console.disableYellowBox = true;
   const [isLoading, setIsLoading] = React.useState(true);
   const [userToken, setUserToken] = React.useState("null");
 

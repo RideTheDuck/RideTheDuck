@@ -3,7 +3,8 @@ import Firebase from '../config/Firebase'
 
 export const AuthContext = createContext();
 
-export const AuthProvider = ({children}) => {
+export const AuthProvider = ({ children }) => {
+  
   const [user, setUser] = useState(null);
 
   return (
