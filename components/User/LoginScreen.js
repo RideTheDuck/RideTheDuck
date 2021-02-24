@@ -12,18 +12,31 @@ import { windowHeight, windowWidth } from '../Dimensions'
 
 
 class Login extends React.Component {
+  state = {
+    error: ''
+  }
   handleLogin = () => {
-    const { email, password } = this.state
+    const { email, password} = this.state
 
     Firebase.auth()
       .signInWithEmailAndPassword(email, password)
       .then(() => this.props.navigation.navigate('Home'))
-      .catch(error => console.log(error))
+      .catch(error => {
+        console.log(error)
+        let errorMessage = error.message
+        this.onSignupFailure.bind(this)(errorMessage)
+      })
   }
+
+  onSignupFailure(errorMessage){
+    this.setState({error: errorMessage})
+  }
+
 
   render() {
     return (
       <View style={styles.container}>
+      <Text style={{color:'red', marginBottom: 50}}>{this.state.error}</Text>
 
         <Image source={require('../../assets/rubber-duck.png')} style={styles.logo} />
         <Text style={styles.text}>Ride the Duck</Text>

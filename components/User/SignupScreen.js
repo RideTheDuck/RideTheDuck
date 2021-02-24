@@ -14,7 +14,8 @@ class Signup extends React.Component {
   state = {
     name: '',
     email: '',
-    password: ''
+    password: '',
+    error:''
   }
 
   handleSignUp = () => {
@@ -22,12 +23,21 @@ class Signup extends React.Component {
     Firebase.auth()
       .createUserWithEmailAndPassword(email, password)
       .then(() => this.props.navigation.navigate('Login'))
-      .catch(error => console.log(error))
+      .catch(error => {
+        console.log(error)
+        let errorMessage = error.message
+        this.onLoginFailure.bind(this)(errorMessage)
+      })
+  }
+
+  onLoginFailure(errorMessage){
+    this.setState({error: errorMessage})
   }
 
   render() {
     return (
       <View style={styles.container}>
+      <Text style={{color:'red', marginBottom: 50}}>{this.state.error}</Text>
         <Text style={styles.text}>Create an account</Text>
 
         <View style={styles.inputContainer}>
@@ -92,6 +102,8 @@ class Signup extends React.Component {
         <TouchableOpacity style={styles.navButton} onPress={() => { this.props.navigation.navigate('Login') }}>
           <Text style={styles.navButtonText}>Have an account? Sign In</Text>
         </TouchableOpacity>
+
+        
 
       </View>
     )
