@@ -108,10 +108,10 @@ I need to be able to see the cheapest deals for flights.
   
 =================================
 ### Initial Concept Wireframe
-<img src="./assets/initial_concept_wf.png" alt="Initial Wireframe" width="50%"> 
+<img src="./assets/initial_concept_wf.png" alt="Initial Wireframe" width="50"> 
 
 ### Final Concept Wireframe
-<img src='./assets/final_concept_wf.png' alt="Wireframe" width="50%">
+<img src='./assets/final_concept_wf.png' alt="Wireframe" width="50">
 
 ### Product Presentation
 <img src='./assets/Ride.gif'>
