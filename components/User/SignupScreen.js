@@ -46,15 +46,6 @@ class Signup extends React.Component {
           />
         </View>
 
-
-        {/* <FormInput
-          iconType="envelope"
-          value={this.state.email}
-          onChangeText={email => this.setState({ email })}
-          placeholder='Email'
-          autoCapitalize='none'
-        /> */}
-
         <View style={styles.inputContainer}>
           <View style={styles.iconStyle}>
             <Image source={require('../../assets/email.png')} style={{ width: 30, height: 30 }} />
@@ -70,15 +61,6 @@ class Signup extends React.Component {
           />
         </View>
 
-
-
-        {/* <FormInput
-          iconType="lock"
-          value={this.state.password}
-          onChangeText={password => this.setState({ password })}
-          placeholder='Password'
-          secureTextEntry={true}
-        /> */}
 
       <View style={styles.inputContainer}>
           <View style={styles.iconStyle}>
