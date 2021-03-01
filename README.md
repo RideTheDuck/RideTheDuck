@@ -113,6 +113,10 @@ I need to be able to see the cheapest deals for flights.
 ### Final Concept Wireframe
 <img src='./assets/final_concept_wf.png' alt="Wireframe" width="30%">
 
+
+### APP Presentation
+[Watch the app presentation video](https://github.com/RideTheDuck/RideTheDuck/blob/main/ridetheduckfinalpresentation_cRfG2cxa.mp4)
+
+
 ### Product Presentation
 <img src='./assets/Ride.gif'>
-
